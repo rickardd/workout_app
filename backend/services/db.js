@@ -101,3 +101,18 @@ module.exports.createWorkout = function(doc, callback) {
 
   });
 };
+
+module.exports.findWorkout = function(id, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts');
+
+    collection.findOne({ _id: new mongo.ObjectId(id) }, (function(err, doc) {
+      if(err) throw err;
+      callback(doc);
+      client.close();
+    }));
+  });
+};
+
