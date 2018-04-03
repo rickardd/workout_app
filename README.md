@@ -1,8 +1,16 @@
-# Work out App
+# Workout App
 
-## SETUP UP VUE
+## RUN Project
 
-> A Vue.js project
+./ Root
+
+``npm run start // runs on http://localhost:8080`` 
+
+./backend
+``npm run start // runs on http://localhost:3000``
+
+Anywhere
+``mongod``
 
 ## Front end Build and Setup
 
