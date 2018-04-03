@@ -1,10 +1,10 @@
-# node_vue_template
+# Work out App
 
 ## SETUP UP VUE
 
 > A Vue.js project
 
-## Build Setup
+## Front end Build and Setup
 
 ``` bash
 # install dependencies
@@ -48,6 +48,22 @@ npm run start
 # runs on port http://localhost:3000/
 ```
 
+
+## MongoDB setup
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition
+
+``brew update``
+
+``brew install mongodb``
+
+***Create folder to write data***
+
+``mkdir -p /data/db // keep this path for easier setup. ``
+
+``chmod 777 // set read and write permission to both data and data/db``
+
+``mongod // run database``
 
 
 ## How this project is set up.
