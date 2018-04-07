@@ -131,16 +131,18 @@ module.exports.createSet = function(workoutId, doc, callback) {
 
     collection.findOneAndUpdate(
       { _id: new mongo.ObjectId(workoutId) },
-      { $set:
-        { 
-          "name" : doc.name,
-          "weight" : doc.weight,
-          "weightGoal" : doc.weightGoal,
-          "timeGoal" : doc.timeGoal,
-          "repTime" : doc.repTime,
-          "repQuantity" : doc.repQuantity,
-          "comment" : doc.comment,
-          "image" : doc.image,
+      { $push:
+        { "sets": 
+          { 
+            "name" : doc.name,
+            "weight" : doc.weight,
+            "weightGoal" : doc.weightGoal,
+            "timeGoal" : doc.timeGoal,
+            "repTime" : doc.repTime,
+            "repQuantity" : doc.repQuantity,
+            "comment" : doc.comment,
+            "image" : doc.image,
+          }
         }
       },
       {
