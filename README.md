@@ -10,7 +10,8 @@
 ``npm run start // runs on http://localhost:3000``
 
 Anywhere
-``mongod``
+``mongod // start the database``
+``mongo // start the shell	``
 
 ## Front end Build and Setup
 
@@ -84,3 +85,28 @@ Root directory is installed with vue-cli with test, eslint and webpack
 
 The backend direcorty is installed with express-generator
 
+
+
+## Mongo DB shell commands
+```
+show dbs
+use <db>
+show collections	// Print a list of all collections for current database
+show users	// Print a list of users for current database.
+show roles	// Print a list of all roles, both user-defined and built-in, for the current database.
+show profile	// Print the five most recent operations that took 1 millisecond or more. See documentation on the database profiler for more information.
+show databases	Print a list of all available databases.
+
+db.workouts.find() // shows all records in the collection called workouts
+
+db.workout.insertOne()	Insert a new document into the collection.
+db.workout.insertMany()	Insert multiple new documents into the collection.
+db.workout.updateOne()	Update a single existing document in the collection.
+db.workout.updateMany()	Update multiple existing documents in the collection.
+db.workout.save()	Insert either a new document or update an existing document in the collection.
+db.workout.deleteOne()	Delete a single document from the collection.
+db.workout.deleteMany()	Delete documents from the collection.
+db.workout.drop()	Drops or removes completely the collection.
+db.workout.createIndex()	Create a new index on the collection if the index does not exist; otherwise, the operation has no effect.
+db.getSiblingDB()	Return a reference to another database using this same connection without explicitly switching the current database. This allows for cross database queries.
+```

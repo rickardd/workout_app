@@ -116,3 +116,56 @@ module.exports.findWorkout = function(id, callback) {
   });
 };
 
+
+// SETS
+
+module.exports.createSet = function(workoutId, doc, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts')
+
+    // var workoutId = "5ac89b9b0db62d3a5c0a9802";
+
+    console.log(workoutId, "---------");
+
+    collection.findOneAndUpdate(
+      { _id: new mongo.ObjectId(workoutId) },
+      { $set:
+        { 
+          "name" : doc.name,
+          "weight" : doc.weight,
+          "weightGoal" : doc.weightGoal,
+          "timeGoal" : doc.timeGoal,
+          "repTime" : doc.repTime,
+          "repQuantity" : doc.repQuantity,
+          "comment" : doc.comment,
+          "image" : doc.image,
+        }
+      },
+      {
+        // "upsert" : true
+      },
+      function(err, doc) {
+        if(err) throw err;
+        callback(doc);
+        client.close();
+      }
+    );
+  });
+};
+
+module.exports.findSet = function(id, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('sets');
+
+    collection.findOne({ _id: new mongo.ObjectId(id) }, (function(err, doc) {
+      if(err) throw err;
+      callback(doc);
+      client.close();
+    }));
+  });
+};
+
