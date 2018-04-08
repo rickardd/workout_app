@@ -3,7 +3,6 @@
 
     <h1>Workouts</h1>
 
-
     <div v-if="!!workouts.length">
       <ul>
         <li v-for="workout in workouts">
@@ -12,7 +11,7 @@
       </ul>
     </div>
     <div v-else>
-      Ah. You're a first time user. 
+      Ah. You're a first time user.
       <br>
       <br>
       No worrie...
@@ -21,7 +20,6 @@
       <a href="/workout/create">Create my fist workout :)</a>
 
     </div>
-    
 
   </div>
 </template>

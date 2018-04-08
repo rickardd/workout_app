@@ -43,17 +43,17 @@ export default {
       breakElapseTime: 0,
     }
   },
-  mounted(){
+  mounted () {
     this.restartBreakElapseTime()
       .then( () => {
         this.$emit('breakCompleted')
       })
   },
-  beforeDestroy(){
+  beforeDestroy () {
     clearInterval(this.timer)
   },
   methods: {
-    restartBreakElapseTime(){
+    restartBreakElapseTime () {
       this.breakElapseTime = 4
       return new Promise( (resolve, reject) => {
         this.timer = setInterval( () => {

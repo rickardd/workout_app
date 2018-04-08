@@ -58,10 +58,10 @@ export default {
       },
     }
   },
-  mounted(){
+  mounted () {
     this.resetElapsedTime()
   },
-  beforeDestroy(){
+  beforeDestroy () {
     clearInterval(this.timer)
   },
   methods: {
@@ -71,11 +71,11 @@ export default {
       const response = await SetService.createJournal( this.data )
       this.workout = response.data
     },
-    onCompleted(){
+    onCompleted () {
       this.$emit('actionCompleted')
       this.createJournal();      
     },
-    resetElapsedTime(){
+    resetElapsedTime () {
       this.elapsedTime = 0
 
       console.log('START TIMER');

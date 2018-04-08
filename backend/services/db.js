@@ -152,6 +152,7 @@ module.exports.createSet = function(workoutId, doc, callback) {
             "repsGoal" : doc.repsGoal,
             "timeGoal" : doc.timeGoal,
             "repTime" : doc.repTime,
+            "numberOfSets" : doc.numberOfSets,
             "comment" : doc.comment,
             "image" : doc.image,
           }

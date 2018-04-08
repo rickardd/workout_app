@@ -48,7 +48,7 @@ export default {
       const workout = await WorkoutService.getWorkout(response.data.ops[0]._id)
       this.workout = workout.data
     },
-    workoutUrl(){
+    workoutUrl() {
       return `/workout/${this.workout._id}/`
     }
   }

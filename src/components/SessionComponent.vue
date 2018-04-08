@@ -59,11 +59,11 @@ export default {
       this.workout = response.data
       this.updateSets()
     },
-    updateSets(){
+    updateSets () {
       this.currentSet = this.workout.sets[ this.setCounter ]
       this.setCounter += 1
     },
-    onActionCompleted( e ){
+    onActionCompleted ( e ) {
       const sets = this.workout.sets;
       const lastSet = sets[sets.length -1]
       if( this.currentSet.name === lastSet.name){
@@ -73,7 +73,7 @@ export default {
       this.updateSets()
       this.currentView = 'sessionBreak'
     },
-    onBreakCompleted( e ){
+    onBreakCompleted ( e ) {
       this.currentView = 'sessionAction'
     },
   }

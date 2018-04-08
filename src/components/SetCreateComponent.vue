@@ -38,6 +38,13 @@
         v-model="set.repTime">
       <br>
       <input
+        type="number"
+        name="numberOfSets"
+        autocomplete="off"
+        placeholder="Number of Sets (e.g 3 sets)"
+        v-model="set.numberOfSets">
+      <br>
+      <input
         type="text"
         name="comment"
         autocomplete="off"
@@ -72,8 +79,8 @@
             <dd style="display: inline;">{{set.timeGoal}}</dd><br>
           <dt style="display: inline;"><strong>repTime</strong></dt>
             <dd style="display: inline;">{{set.repTime}}</dd><br>
-          <dt style="display: inline;"><strong>repQuantity</strong></dt>
-            <dd style="display: inline;">{{set.repQuantity}}</dd><br>
+          <dt style="display: inline;"><strong>numberOfSets</strong></dt>
+            <dd style="display: inline;">{{set.numberOfSets}}</dd><br>
           <dt style="display: inline;"><strong>comment</strong></dt>
             <dd style="display: inline;">{{set.comment}}</dd><br>
           <dt style="display: inline;"><strong>image</strong></dt>
@@ -103,14 +110,14 @@ export default {
         repsGoal: '',
         timeGoal: '',
         repTime: '',
-        repQuantity: '',
+        numberOfSets: '',
         comment: '',
         image: '',
       },
       sets: {},
     }
   },
-  mounted(){
+  mounted () {
     this.workoutId = this.$route.params.workoutId
   },
   methods: {
