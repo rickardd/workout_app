@@ -185,3 +185,33 @@ module.exports.findSet = function(id, callback) {
   });
 };
 
+
+// JOURNALS
+
+module.exports.createJournal = function(workoutId, doc, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts')
+
+    collection.findOneAndUpdate(
+      { _id: new mongo.ObjectId(workoutId) },
+      { $push:
+        { "journals": 
+          { 
+            "weight" : doc.weight,
+            "reps" : doc.reps,
+            "elapseTime" : doc.elapsedTime,
+          }
+        }
+      },
+      {},
+      function(err, doc) {
+        if(err) throw err;
+        callback(doc);
+        client.close();
+      }
+    );
+  });
+};
+

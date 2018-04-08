@@ -18,7 +18,14 @@
     <span>timeGoal: </span> <span>x</span><br>
     <span>repGoal: </span> <span>x</span><br>
     <span>image: </span> <span>x</span><br>
-    <span>comment: </span> <span>x</span><br>
+
+    <div>Average</div>
+    <span>Average weight: </span> <span>x</span><br>
+    <span>Average reps: </span> <span>x</span><br>
+
+    <div>Personal best</div>
+    <span>PB weight: </span> <span>x</span><br>
+    <span>PB reps: </span> <span>x</span><br>
 
     <button type="button">Lock</button>
 

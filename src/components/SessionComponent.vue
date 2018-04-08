@@ -4,7 +4,6 @@
     <h1>Session</h1>
 
     Elapse {{breakElapseTime}}
-    
 
     <div v-if="!workout">
       Loading...
