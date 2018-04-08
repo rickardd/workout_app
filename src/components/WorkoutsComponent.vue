@@ -3,13 +3,25 @@
 
     <h1>Workouts</h1>
 
-    {{ workouts }}
 
-    <ul>
-      <li v-for="workout in workouts">
-        <a :href="workoutUrl(workout._id)">{{workout.workout}}</a>
-      </li>
-    </ul>
+    <div v-if="!!workouts.length">
+      <ul>
+        <li v-for="workout in workouts">
+          <a :href="workoutUrl(workout._id)">{{workout.workout}}</a>
+        </li>
+      </ul>
+    </div>
+    <div v-else>
+      Ah. You're a first time user. 
+      <br>
+      <br>
+      No worrie...
+      <br>
+      <br>
+      <a href="/workout/create">Create my fist workout :)</a>
+
+    </div>
+    
 
   </div>
 </template>

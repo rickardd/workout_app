@@ -57,27 +57,17 @@ export default new Router({
       component: WorkoutCreateComponent
     },
     {
-      path: '/workout/:id',
+      path: '/workout/:workoutId',
       name: 'Workout',
       component: WorkoutComponent
     },
     {
-      path: '/workout/:id/session/',
+      path: '/workout/:workoutId/session/',
       name: 'Session',
       component: SessionComponent
     },
-    // {
-    //   path: '/session/',
-    //   name: 'SessionAction',
-    //   component: SessionActionComponent
-    // },
-    // {
-    //   path: '/session/',
-    //   name: 'SessionBreak',
-    //   component: SessionBreakComponent
-    // },
     {
-      path: '/set/create',
+      path: '/workout/:workoutId/set/create',
       name: 'SetCreate',
       component: SetCreateComponent
     },

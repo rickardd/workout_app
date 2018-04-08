@@ -14,16 +14,14 @@
           Create workout
       </button>
     </form>
-
-    <div v-if="workout">
+    {{workout._id}}
+    <div v-if="!!workout._id">
       <hr>
       <h1>{{workout.workout}} created</h1>
-      {{workout._id}}
+      <a :href="workoutUrl()">Go to workout</a>
     </div>
-
     <br>
-
-    <a href="/users">Back to users</a>
+    
   </div>
 </template>
 
@@ -49,6 +47,9 @@ export default {
       })
       const workout = await WorkoutService.getWorkout(response.data.ops[0]._id)
       this.workout = workout.data
+    },
+    workoutUrl(){
+      return `/workout/${this.workout._id}/`
     }
   }
 

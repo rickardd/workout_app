@@ -3,8 +3,6 @@
 
     <h1>Session</h1>
 
-    Elapse {{breakElapseTime}}
-
     <div v-if="!workout">
       Loading...
     </div>
@@ -21,8 +19,8 @@
         @actionCompleted="onActionCompleted" />
       <SessionBreakComponent 
         v-if="currentView == 'sessionBreak'" 
-        :set="NextSet" 
-        :workoutId="workout._id" />
+        :set="currentSet"
+        @breakCompleted="onBreakCompleted" />
     </div>
 
   </div>
@@ -44,25 +42,25 @@ export default {
   ],
   data () {
     return {
+      workoutId: '',
       workout: {},
       currentSet: {},
       setCounter: 0,
-      currentView: 'sessionAction',
-      breakElapseTime: -1,
+      currentView: 'sessionBreak',
     }
   },
-  beforeMount () {
-    this.getWorkout("5ac89b9b0db62d3a5c0a9802")
+  mounted () {
+    this.workoutId = this.workoutId = this.$route.params.workoutId
+    this.getWorkout()
   },
   methods: {
-    async getWorkout ( id ) {
-      const response = await WorkoutService.getWorkout( id )
+    async getWorkout () {
+      const response = await WorkoutService.getWorkout( this.workoutId )
       this.workout = response.data
       this.updateSets()
     },
     updateSets(){
       this.currentSet = this.workout.sets[ this.setCounter ]
-      this.NextSet = this.workout.sets[ this.setCounter + 1 ]
       this.setCounter += 1
     },
     onActionCompleted( e ){
@@ -74,26 +72,10 @@ export default {
       }
       this.updateSets()
       this.currentView = 'sessionBreak'
-      this.restartBreakElapseTime()
-        .then( () => {
-          this.currentView = 'sessionAction'    
-        });
     },
     onBreakCompleted( e ){
       this.currentView = 'sessionAction'
     },
-    restartBreakElapseTime(){
-      this.breakElapseTime = 3
-      return new Promise( (resolve, reject) => {
-        let t = setInterval( () => {
-          this.breakElapseTime -= 1;
-          if(this.breakElapseTime <= 0) {
-            clearInterval(t)
-            resolve()
-          }
-        }, 1000)
-      })
-    }
   }
 }
 </script>

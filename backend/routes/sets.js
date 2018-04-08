@@ -7,7 +7,6 @@ router.post('/', function( req, res ) {
   const workoutId = req.body.workoutId;
   const doc = req.body.set;
   queries.createSet(workoutId, doc, function( doc ) {
-    // console.log(doc)
     res.send( doc )
   });
 });

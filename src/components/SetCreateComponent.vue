@@ -10,39 +10,32 @@
         v-model="set.name">
       <br>
       <input
-        type="text"
-        name="weight"
-        autocomplete="off"
-        placeholder="Weight"
-        v-model="set.weight">
-      <br>
-      <input
-        type="text"
+        type="number"
         name="weightGoal"
         autocomplete="off"
-        placeholder="Weight Goal"
+        placeholder="Weight Goal (kg)"
         v-model="set.weightGoal">
       <br>
       <input
-        type="text"
+        type="number"
+        name="repsGoal"
+        autocomplete="off"
+        placeholder="Reps Goal"
+        v-model="set.repsGoal">
+      <br>
+      <input
+        type="number"
         name="timeGoal"
         autocomplete="off"
-        placeholder="Time Goal"
+        placeholder="Time Goal, e.g 60s"
         v-model="set.timeGoal">
       <br>
       <input
-        type="text"
+        type="number"
         name="repTime"
         autocomplete="off"
         placeholder="Rep Time (e.g 5sec for each rep)"
         v-model="set.repTime">
-      <br>
-      <input
-        type="text"
-        name="repQuantity"
-        autocomplete="off"
-        placeholder="Number of reps for this set"
-        v-model="set.repQuantity">
       <br>
       <input
         type="text"
@@ -64,14 +57,30 @@
           Create set
       </button>
     </form>
-
-    <div v-if="set">
-      <hr>
-      <h1>{{set.set}} created</h1>
-      {{set._id}}
-    </div>
-
-    <br>
+    
+    <hr>
+    <ul>
+      <li v-for="set in sets">
+        <dl>
+          <dt style="display: inline;"><strong>name</strong></dt>
+            <dd style="display: inline;">{{set.name}}</dd><br>
+          <dt style="display: inline;"><strong>weightGoal</strong></dt>
+            <dd style="display: inline;">{{set.weightGoal}}</dd><br>
+          <dt style="display: inline;"><strong>repsGoal</strong></dt>
+            <dd style="display: inline;">{{set.repsGoal}}</dd><br>
+          <dt style="display: inline;"><strong>timeGoal</strong></dt>
+            <dd style="display: inline;">{{set.timeGoal}}</dd><br>
+          <dt style="display: inline;"><strong>repTime</strong></dt>
+            <dd style="display: inline;">{{set.repTime}}</dd><br>
+          <dt style="display: inline;"><strong>repQuantity</strong></dt>
+            <dd style="display: inline;">{{set.repQuantity}}</dd><br>
+          <dt style="display: inline;"><strong>comment</strong></dt>
+            <dd style="display: inline;">{{set.comment}}</dd><br>
+          <dt style="display: inline;"><strong>image</strong></dt>
+            <dd style="display: inline;">{{set.image}}</dd><br>
+        </dl>
+      </li>
+    </ul>
   
   </div>
 </template>
@@ -87,26 +96,33 @@ export default {
   ],
   data () {
     return {
+      workoutId: '',
       set: {
         name: '',
-        weight: '',
         weightGoal: '',
+        repsGoal: '',
         timeGoal: '',
         repTime: '',
         repQuantity: '',
         comment: '',
         image: '',
-      }
+      },
+      sets: {},
     }
+  },
+  mounted(){
+    this.workoutId = this.$route.params.workoutId
   },
   methods: {
     async create () {
+      this.$route.params.username
       const response = await SetService.createSet({
-        workoutId: '5ac89b9b0db62d3a5c0a9802',
+        workoutId: this.workoutId,
         set: this.set,
       })
-      const set = await SetService.getSet(response.data.ops[0]._id)
-      this.set = set.data
+      this.sets = response.data.value.sets;
+      // const set = await SetService.getSet(response.data.ops[0]._id)
+      // this.set = set.data
     }
   }
 }

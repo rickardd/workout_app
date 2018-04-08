@@ -3,7 +3,7 @@
 
     <h1>Workout : {{ workout.workout }} </h1>
 
-    <span>_id:</span> <strong>{{workout._id}}</strong>
+    <span>_id:</span> <strong>{{workout._id}}</strong><br><br>
 
     <div v-for="set in workout.sets">
       <h2>name:</h2> <strong>{{set.name}}</strong> <br>
@@ -18,8 +18,11 @@
       <hr>
       <br>
     </div>
-
-    <a href="/workout/5ac89b9b0db62d3a5c0a9802/session/">Start workout</a>
+    
+    <a :href="createSetUrl()">Add Set</a>
+    <br>
+    <br>
+    <a :href="sessionUrl()">Start workout</a>
 
   </div>
 </template>
@@ -34,16 +37,26 @@ export default {
   ],
   data () {
     return {
-      workout: {}
+      workoutId: '',
+      workout: {},
     }
   },
-  beforeMount () {
-    this.getWorkout("5ac89b9b0db62d3a5c0a9802")
+  mounted () {
+    this.workoutId = this.$route.params.workoutId
+    console.log(this.workoutId);
+    this.getWorkout()
   },
   methods: {
-    async getWorkout ( id ) {
-      const response = await WorkoutService.getWorkout( id )
+    async getWorkout () {
+      const response = await WorkoutService.getWorkout( this.workoutId )
       this.workout = response.data
+    },
+    createSetUrl(){
+      
+      return `/workout/${this.workoutId}/set/create/`
+    },
+    sessionUrl(){
+      return `/workout/${this.workoutId}/session/`
     }
   }
 

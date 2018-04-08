@@ -1,23 +1,19 @@
 <template>
   <div>
 
-    <h1>Session break</h1>
+    <h1>Break</h1>
 
-    <span>Time left: </span> <span>{{timeLeft}} sec</span>
+    <h2>Get Ready For Next Excercise In : <span>{{breakElapseTime}} Sec</span></h2>
 
-    <br>
-    <br>
-
-    <h2>Next excercise : <span>30 Sec</span></h2>
-
-    <h3>benchpress</h3>
-    <span>Weight: </span> <span>x</span><br>
-    <span>Rep Time: </span> <span>x</span><br>
-    <span>repQuantity: </span> <span>x</span><br>
-    <span>repTime: </span> <span>x</span><br>
-    <span>timeGoal: </span> <span>x</span><br>
-    <span>repGoal: </span> <span>x</span><br>
-    <span>image: </span> <span>x</span><br>
+    <h3>{{set.name}}</h3>
+    <span>Weight: </span> <span>{{set.weightGoal}}</span><br>
+    <span>Rep Time: </span> <span>{{set.repsGoal}}</span><br>
+    <span>repQuantity: </span> <span>{{set.repQuantity}}</span><br>
+    <span>repTime: </span> <span>{{set.repTime}}</span><br>
+    <span>timeGoal: </span> <span>{{set.timeGoal}}</span><br>
+    <span>repGoal: </span> <span>{{set.repGoal}}</span><br>
+    <span>comment: </span> <span>{{set.comment}}</span><br>
+    <span>image: </span> <span>{{set.image}}</span><br>
 
     <div>Average</div>
     <span>Average weight: </span> <span>x</span><br>
@@ -38,23 +34,39 @@ import WorkoutService from '@/services/WorkoutService'
 export default {
   name: 'Workout',
   props: [
-    "timeLeft"
+    "set"
   ],
   data () {
     return {
-      workout: {}
+      workout: {},
+      timer: null,
+      breakElapseTime: 0,
     }
   },
-  // beforeMount () {
-  //   this.getWorkout("5ac89b9b0db62d3a5c0a9802")
-  // },
+  mounted(){
+    this.restartBreakElapseTime()
+      .then( () => {
+        this.$emit('breakCompleted')
+      })
+  },
+  beforeDestroy(){
+    clearInterval(this.timer)
+  },
   methods: {
-    // async getWorkout ( id ) {
-    //   const response = await WorkoutService.getWorkout( id )
-    //   this.workout = response.data
-    // }
+    restartBreakElapseTime(){
+      this.breakElapseTime = 4
+      return new Promise( (resolve, reject) => {
+        this.timer = setInterval( () => {
+          this.breakElapseTime -= 1;
+          if(this.breakElapseTime <= 0) {
+            clearInterval(this.timer)
+            resolve()
+          }
+        }, 1000)
+      })
+    }
+  
   }
-
 }
 </script>
 

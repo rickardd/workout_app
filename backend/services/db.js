@@ -88,6 +88,7 @@ module.exports.deleteUser = function(id, callback) {
 // WORKOUT
 
 module.exports.createWorkout = function(doc, callback) {
+  console.log( doc );
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
     const db = client.db(dbName);
@@ -139,8 +140,6 @@ module.exports.createSet = function(workoutId, doc, callback) {
     const db = client.db(dbName);
     const collection = db.collection('workouts')
 
-    // var workoutId = "5ac89b9b0db62d3a5c0a9802";
-
     console.log(workoutId, "---------");
 
     collection.findOneAndUpdate(
@@ -149,11 +148,10 @@ module.exports.createSet = function(workoutId, doc, callback) {
         { "sets": 
           { 
             "name" : doc.name,
-            "weight" : doc.weight,
             "weightGoal" : doc.weightGoal,
+            "repsGoal" : doc.repsGoal,
             "timeGoal" : doc.timeGoal,
             "repTime" : doc.repTime,
-            "repQuantity" : doc.repQuantity,
             "comment" : doc.comment,
             "image" : doc.image,
           }
@@ -161,6 +159,7 @@ module.exports.createSet = function(workoutId, doc, callback) {
       },
       {
         // "upsert" : true
+        "returnNewDocument" : true
       },
       function(err, doc) {
         if(err) throw err;
