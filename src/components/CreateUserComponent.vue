@@ -64,10 +64,7 @@ export default {
         name: this.name,
         surname: this.surname
       })
-      console.log(response.data.ops[0]._id)
-      console.log(response)
       const newUser = await UserService.getUser(response.data.ops[0]._id)
-      console.log(newUser.data)
       this.newUser = newUser.data
     },
     async update () {
@@ -75,16 +72,12 @@ export default {
         name: this.name,
         surname: this.surname
       })
-      // console.log(response)
-      // this.name = response.data.name
-      // this.surname = response.data.surname
       this.newUser = response.data
     }
   },
   async beforeMount () {
     if (this.id) {
       const response = await UserService.getUser(this.id)
-      console.log(response.data)
       this.name = response.data.name
       this.surname = response.data.surname
     }

@@ -6,7 +6,7 @@
     <div>ElapsedTime: <strong>{{data.elapsedTime}}</strong></div>
 
     <span>_id:</span> <strong>{{workoutId}}</strong>
-  
+
     <span>comment:</span> <strong>{{set.comment}}</strong> <br>
     <span>image:</span> <strong>{{set.image}}</strong> <br>
     <span>repQuantity:</span> <strong>{{set.repQuantity}}</strong> <br>
@@ -35,7 +35,7 @@
 
       <button type="button" @click="onCompleted">Done</button>
     </form>
-    
+
   </div>
 </template>
 
@@ -67,24 +67,19 @@ export default {
   methods: {
     async createJournal () {
       this.data.workoutId = this.workoutId
-      console.log('DATA', this.data);
       const response = await SetService.createJournal( this.data )
       this.workout = response.data
     },
     onCompleted () {
       this.$emit('actionCompleted')
-      this.createJournal();      
+      this.createJournal();
     },
     resetElapsedTime () {
       this.elapsedTime = 0
-
-      console.log('START TIMER');
-      
       this.timer = setInterval( () => {
         this.data.elapsedTime += 1;
-        console.log(this.elapsedTime);
       }, 1000)
-    
+
     }
   }
 }

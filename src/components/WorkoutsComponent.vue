@@ -38,13 +38,11 @@ export default {
     }
   },
   beforeMount () {
-    console.log('beforeMount');
     this.getWorkouts()
   },
   methods: {
     async getWorkouts () {
       const response = await WorkoutService.getWorkouts()
-      // const workout = await WorkoutService.getWorkout(response.data.ops[0]._id)
       this.workouts = response.data
     },
     workoutUrl( id ){

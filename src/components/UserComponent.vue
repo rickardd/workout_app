@@ -30,7 +30,6 @@ export default {
   },
   async beforeMount () {
     const response = await UserService.getUser(this.id)
-    console.log(response.data)
     this.user = response.data
   }
 }

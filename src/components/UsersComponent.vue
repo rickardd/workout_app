@@ -29,10 +29,8 @@ export default {
   methods: {
     async onDelete (id) {
       await UserService.deleteUser(id)
-      console.log(`user ${id} was deleted`)
       const newUsersResponse = await UserService.getUsers()
       this.users = newUsersResponse.data
-      console.log(newUsersResponse)
     }
   },
   async beforeCreate () {
