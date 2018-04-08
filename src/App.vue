@@ -8,6 +8,11 @@
         </router-link>
       </li>
       <li>
+        <router-link to="/workouts">
+          /workout : List all workouts
+        </router-link>
+      </li>
+      <li>
         <router-link to="/workout/create">
           /workout/create
         </router-link>

@@ -102,6 +102,20 @@ module.exports.createWorkout = function(doc, callback) {
   });
 };
 
+module.exports.findWorkouts = function(callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts');
+
+    collection.find({}).toArray(function(err, doc) {
+      if(err) throw err;
+      callback(doc);
+      client.close();
+    });
+  });
+};
+
 module.exports.findWorkout = function(id, callback) {
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;

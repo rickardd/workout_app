@@ -5,6 +5,8 @@ import UsersComponent from '@/components/UsersComponent'
 import UserComponent from '@/components/UserComponent'
 import HomeComponent from '@/components/HomeComponent'
 import WorkoutCreateComponent from '@/components/WorkoutCreateComponent'
+import WorkoutsComponent from '@/components/WorkoutsComponent'
+import WorkoutComponent from '@/components/WorkoutComponent'
 import SetCreateComponent from '@/components/SetCreateComponent'
 import ActionComponent from '@/components/ActionComponent'
 import ActionBreakComponent from '@/components/ActionBreakComponent'
@@ -42,9 +44,19 @@ export default new Router({
       props: true // When props is set to true, the route.params will be set as the component props.
     },
     {
+      path: '/workouts/',
+      name: 'Workouts',
+      component: WorkoutsComponent
+    },
+    {
       path: '/workout/create',
       name: 'WorkoutCreate',
       component: WorkoutCreateComponent
+    },
+    {
+      path: '/workout/:id',
+      name: 'Workout',
+      component: WorkoutComponent
     },
     {
       path: '/set/create',

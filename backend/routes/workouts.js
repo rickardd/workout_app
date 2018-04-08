@@ -3,6 +3,16 @@ var router = express.Router();
 var queries = require('../services/db');
 
 
+
+// GET /
+// All workouts
+router.get('/', function( req, res ) {
+  queries.findWorkouts( function ( doc ) {
+  	console.log('NOTE ROUTE ALL WORKOUTS');
+    res.send( doc )
+  });
+});
+
 // GET /:id
 router.get('/:id', function( req, res ) {
   const id = req.params.id;
