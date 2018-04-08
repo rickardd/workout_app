@@ -19,9 +19,7 @@
       <br>
     </div>
 
-    <button type="button">Start workout</button>
-
-
+    <a href="/workout/5ac89b9b0db62d3a5c0a9802/session/">Start workout</a>
 
   </div>
 </template>
