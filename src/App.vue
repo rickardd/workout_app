@@ -35,12 +35,27 @@
     </ul>
 
     <router-view/>
+
+    <AudioComponent/>
+
   </div>
 </template>
 
 <script>
+
+import AudioComponent from '@/components/AudioComponent'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AudioComponent
+  },
+  mounted(){
+    setTimeout( t => {
+      this.$emit('audio:play', 'blop' );
+      console.log('emit');
+    },1000)
+  }
 }
 </script>
 
