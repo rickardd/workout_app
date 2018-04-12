@@ -134,19 +134,17 @@ module.exports.findWorkout = function(id, callback) {
 
 // SETS
 
-module.exports.createSet = function(workoutId, doc, callback) {
+module.exports.createExercises = function(workoutId, doc, callback) {
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
     const db = client.db(dbName);
     const collection = db.collection('workouts')
 
-    console.log(workoutId, "---------");
-
     collection.findOneAndUpdate(
       { _id: new mongo.ObjectId(workoutId) },
       { $push:
-        { "sets": 
-          { 
+        { "exercises":
+          {
             "name" : doc.name,
             "weightGoal" : doc.weightGoal,
             "repsGoal" : doc.repsGoal,
@@ -171,11 +169,11 @@ module.exports.createSet = function(workoutId, doc, callback) {
   });
 };
 
-module.exports.findSet = function(id, callback) {
+module.exports.findExercises = function(id, callback) {
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
     const db = client.db(dbName);
-    const collection = db.collection('sets');
+    const collection = db.collection('exercises');
 
     collection.findOne({ _id: new mongo.ObjectId(id) }, (function(err, doc) {
       if(err) throw err;
@@ -197,8 +195,8 @@ module.exports.createJournal = function(workoutId, doc, callback) {
     collection.findOneAndUpdate(
       { _id: new mongo.ObjectId(workoutId) },
       { $push:
-        { "journals": 
-          { 
+        { "journals":
+          {
             "weight" : doc.weight,
             "reps" : doc.reps,
             "elapseTime" : doc.elapsedTime,

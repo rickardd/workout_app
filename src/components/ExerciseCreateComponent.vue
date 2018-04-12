@@ -1,110 +1,110 @@
 <template>
   <div>
-    <h1>SetCreate</h1>
+    <h1>ExercisesCreate</h1>
     <form>
       <input
         type="text"
-        name="set"
+        name="exercises"
         autocomplete="off"
-        placeholder="Set name"
-        v-model="set.name">
+        placeholder="Exercises name"
+        v-model="exercises.name">
       <br>
       <input
         type="number"
         name="weightGoal"
         autocomplete="off"
         placeholder="Weight Goal (kg)"
-        v-model="set.weightGoal">
+        v-model="exercises.weightGoal">
       <br>
       <input
         type="number"
         name="repsGoal"
         autocomplete="off"
         placeholder="Reps Goal"
-        v-model="set.repsGoal">
+        v-model="exercises.repsGoal">
       <br>
       <input
         type="number"
         name="timeGoal"
         autocomplete="off"
         placeholder="Time Goal, e.g 60s"
-        v-model="set.timeGoal">
+        v-model="exercises.timeGoal">
       <br>
       <input
         type="number"
         name="repTime"
         autocomplete="off"
         placeholder="Rep Time (e.g 5sec for each rep)"
-        v-model="set.repTime">
+        v-model="exercises.repTime">
       <br>
       <input
         type="number"
         name="numberOfSets"
         autocomplete="off"
         placeholder="Number of Sets (e.g 3 sets)"
-        v-model="set.numberOfSets">
+        v-model="exercises.numberOfSets">
       <br>
       <input
         type="text"
         name="comment"
         autocomplete="off"
         placeholder="comment"
-        v-model="set.comment">
+        v-model="exercises.comment">
       <br>
       <input
         type="text"
         name="image"
         autocomplete="off"
         placeholder="image"
-        v-model="set.image">
+        v-model="exercises.image">
       <br>
       <button
         type="button"
         @click="create">
-          Create set
+          Create exercises
       </button>
     </form>
-    
+
     <hr>
     <ul>
-      <li v-for="set in sets">
+      <li v-for="exercises in exercises">
         <dl>
           <dt style="display: inline;"><strong>name</strong></dt>
-            <dd style="display: inline;">{{set.name}}</dd><br>
+            <dd style="display: inline;">{{exercises.name}}</dd><br>
           <dt style="display: inline;"><strong>weightGoal</strong></dt>
-            <dd style="display: inline;">{{set.weightGoal}}</dd><br>
+            <dd style="display: inline;">{{exercises.weightGoal}}</dd><br>
           <dt style="display: inline;"><strong>repsGoal</strong></dt>
-            <dd style="display: inline;">{{set.repsGoal}}</dd><br>
+            <dd style="display: inline;">{{exercises.repsGoal}}</dd><br>
           <dt style="display: inline;"><strong>timeGoal</strong></dt>
-            <dd style="display: inline;">{{set.timeGoal}}</dd><br>
+            <dd style="display: inline;">{{exercises.timeGoal}}</dd><br>
           <dt style="display: inline;"><strong>repTime</strong></dt>
-            <dd style="display: inline;">{{set.repTime}}</dd><br>
+            <dd style="display: inline;">{{exercises.repTime}}</dd><br>
           <dt style="display: inline;"><strong>numberOfSets</strong></dt>
-            <dd style="display: inline;">{{set.numberOfSets}}</dd><br>
+            <dd style="display: inline;">{{exercises.numberOfSets}}</dd><br>
           <dt style="display: inline;"><strong>comment</strong></dt>
-            <dd style="display: inline;">{{set.comment}}</dd><br>
+            <dd style="display: inline;">{{exercises.comment}}</dd><br>
           <dt style="display: inline;"><strong>image</strong></dt>
-            <dd style="display: inline;">{{set.image}}</dd><br>
+            <dd style="display: inline;">{{exercises.image}}</dd><br>
         </dl>
       </li>
     </ul>
-  
+
   </div>
 </template>
 
 <script>
 
-import SetService from '@/services/SetService'
+import exerciseService from '@/services/ExerciseService'
 
 export default {
-  name: 'SetCreate',
+  name: 'ExercisesCreate',
   props: [
 
   ],
   data () {
     return {
       workoutId: '',
-      set: {
+      exercises: {
         name: '',
         weightGoal: '',
         repsGoal: '',
@@ -114,7 +114,7 @@ export default {
         comment: '',
         image: '',
       },
-      sets: {},
+      // exercises: {},
     }
   },
   mounted () {
@@ -123,13 +123,11 @@ export default {
   methods: {
     async create () {
       this.$route.params.username
-      const response = await SetService.createSet({
+      const response = await exerciseService.createExercises({
         workoutId: this.workoutId,
-        set: this.set,
+        exercises: this.exercises,
       })
-      this.sets = response.data.value.sets;
-      // const set = await SetService.getSet(response.data.ops[0]._id)
-      // this.set = set.data
+      this.exercises = response.data.value.exercises;
     }
   }
 }

@@ -5,8 +5,11 @@ var queries = require('../services/db');
 // POST /
 router.post('/', function( req, res ) {
   const workoutId = req.body.workoutId;
-  const doc = req.body.set;
-  queries.createSet(workoutId, doc, function( doc ) {
+  const doc = req.body.exercises;
+
+  console.log("DOC", req.body);
+
+  queries.createExercises(workoutId, doc, function( doc ) {
     res.send( doc )
   });
 });
@@ -14,7 +17,7 @@ router.post('/', function( req, res ) {
 // GET /:id
 router.get('/:id', function( req, res ) {
   const id = req.params.id;
-  queries.findSet( id, function ( doc ) {
+  queries.findExercises( id, function ( doc ) {
     res.send( doc )
   });
 });

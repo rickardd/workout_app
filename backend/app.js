@@ -9,7 +9,7 @@ var cors = require('cors');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var workouts = require('./routes/workouts');
-var sets = require('./routes/sets');
+var exercises = require('./routes/exercises');
 var journals = require('./routes/journals');
 
 var app = express();
@@ -30,7 +30,7 @@ app.use(cors());
 app.use('/', index);
 app.use('/user', users);
 app.use('/workout', workouts);
-app.use('/set', sets);
+app.use('/exercises', exercises);
 app.use('/journal', journals);
 
 

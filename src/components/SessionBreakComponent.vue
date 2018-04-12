@@ -5,15 +5,15 @@
 
     <h2>Get Ready For Next Excercise In : <span>{{breakElapseTime}} Sec</span></h2>
 
-    <h3>{{set.name}}</h3>
-    <span>Weight: </span> <span>{{set.weightGoal}}</span><br>
-    <span>Rep Time: </span> <span>{{set.repsGoal}}</span><br>
-    <span>repQuantity: </span> <span>{{set.repQuantity}}</span><br>
-    <span>repTime: </span> <span>{{set.repTime}}</span><br>
-    <span>timeGoal: </span> <span>{{set.timeGoal}}</span><br>
-    <span>repGoal: </span> <span>{{set.repGoal}}</span><br>
-    <span>comment: </span> <span>{{set.comment}}</span><br>
-    <span>image: </span> <span>{{set.image}}</span><br>
+    <h3>{{exercises.name}}</h3>
+    <span>Weight: </span> <span>{{exercises.weightGoal}}</span><br>
+    <span>Rep Time: </span> <span>{{exercises.repsGoal}}</span><br>
+    <span>repQuantity: </span> <span>{{exercises.repQuantity}}</span><br>
+    <span>repTime: </span> <span>{{exercises.repTime}}</span><br>
+    <span>timeGoal: </span> <span>{{exercises.timeGoal}}</span><br>
+    <span>repGoal: </span> <span>{{exercises.repGoal}}</span><br>
+    <span>comment: </span> <span>{{exercises.comment}}</span><br>
+    <span>image: </span> <span>{{exercises.image}}</span><br>
 
     <div>Average</div>
     <span>Average weight: </span> <span>x</span><br>
@@ -34,7 +34,7 @@ import WorkoutService from '@/services/WorkoutService'
 export default {
   name: 'Workout',
   props: [
-    "set"
+    "exercises"
   ],
   data () {
     return {
@@ -65,7 +65,7 @@ export default {
         }, 1000)
       })
     }
-  
+
   }
 }
 </script>

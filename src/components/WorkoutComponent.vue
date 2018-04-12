@@ -3,20 +3,20 @@
 
     <h1>Workout : {{ workout.workout }} </h1>
 
-    <div v-for="set in workout.sets">
-      <h2>{{set.name}}</h2>
-      <span>number of sets:</span> <strong>{{set.numberOfSets}}</strong> <br>
-      <span>repTime:</span> <strong>{{set.repTime}}</strong> <br>
-      <span>timeGoal:</span> <strong>{{set.timeGoal}}</strong> <br>
-      <span>weightGoal:</span> <strong>{{set.weightGoal}}</strong> <br>
-      <span>comment:</span> <strong>{{set.comment}}</strong> <br>
-      <span>image:</span> <strong>{{set.image}}</strong> <br>
+    <div v-for="exercises in workout.exercises">
+      <h2>{{exercises.name}}</h2>
+      <span>number of exercises:</span> <strong>{{exercises.numberOfSets}}</strong> <br>
+      <span>repTime:</span> <strong>{{exercises.repTime}}</strong> <br>
+      <span>timeGoal:</span> <strong>{{exercises.timeGoal}}</strong> <br>
+      <span>weightGoal:</span> <strong>{{exercises.weightGoal}}</strong> <br>
+      <span>comment:</span> <strong>{{exercises.comment}}</strong> <br>
+      <span>image:</span> <strong>{{exercises.image}}</strong> <br>
       <br>
       <hr>
       <br>
     </div>
 
-    <a :href="createSetUrl()">Add Set</a>
+    <a :href="createExercisesUrl()">Add Exercises</a>
     <br>
     <br>
     <a :href="sessionUrl()">Start workout</a>
@@ -47,8 +47,8 @@ export default {
       const response = await WorkoutService.getWorkout(this.workoutId)
       this.workout = response.data
     },
-    createSetUrl () {
-      return `/workout/${this.workoutId}/set/create/`
+    createExercisesUrl () {
+      return `/workout/${this.workoutId}/exercises/create/`
     },
     sessionUrl () {
       return `/workout/${this.workoutId}/session/`

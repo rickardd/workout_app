@@ -18,8 +18,8 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/set/create">
-          /set/create
+        <router-link to="/exercises/create">
+          /exercises/create
         </router-link>
       </li>
       <li>

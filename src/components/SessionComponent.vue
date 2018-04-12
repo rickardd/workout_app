@@ -12,14 +12,14 @@
     </div>
 
     <div v-if="workout">
-      <SessionActionComponent 
-        v-if="currentView == 'sessionAction'" 
-        :set="currentSet" 
-        :workoutId="workout._id" 
+      <SessionActionComponent
+        v-if="currentView == 'sessionAction'"
+        :exercises="currentExercises"
+        :workoutId="workout._id"
         @actionCompleted="onActionCompleted" />
-      <SessionBreakComponent 
-        v-if="currentView == 'sessionBreak'" 
-        :set="currentSet"
+      <SessionBreakComponent
+        v-if="currentView == 'sessionBreak'"
+        :exercises="currentExercises"
         @breakCompleted="onBreakCompleted" />
     </div>
 
@@ -44,8 +44,8 @@ export default {
     return {
       workoutId: '',
       workout: {},
-      currentSet: {},
-      setCounter: 0,
+      currentExercises: {},
+      exercisesCounter: 0,
       currentView: 'sessionBreak',
     }
   },
@@ -57,20 +57,20 @@ export default {
     async getWorkout () {
       const response = await WorkoutService.getWorkout( this.workoutId )
       this.workout = response.data
-      this.updateSets()
+      this.updateExercises()
     },
-    updateSets () {
-      this.currentSet = this.workout.sets[ this.setCounter ]
-      this.setCounter += 1
+    updateExercises () {
+      this.currentExercises = this.workout.exercises[ this.exercisesCounter ]
+      this.exercisesCounter += 1
     },
     onActionCompleted ( e ) {
-      const sets = this.workout.sets;
-      const lastSet = sets[sets.length -1]
-      if( this.currentSet.name === lastSet.name){
-        this.currentView = 'sessionCompleted'  
-        return  
+      const exercises = this.workout.exercises;
+      const lastExercises = exercises[exercises.length -1]
+      if( this.currentExercises.name === lastExercises.name){
+        this.currentView = 'sessionCompleted'
+        return
       }
-      this.updateSets()
+      this.updateExercises()
       this.currentView = 'sessionBreak'
     },
     onBreakCompleted ( e ) {

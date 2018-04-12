@@ -10,7 +10,7 @@ import WorkoutComponent from '@/components/WorkoutComponent'
 import SessionComponent from '@/components/SessionComponent'
 // import SessionActionComponent from '@/components/SessionActionComponent'
 // import SessionBreakComponent from '@/components/SessionBreakComponent'
-import SetCreateComponent from '@/components/SetCreateComponent'
+import ExerciseCreateComponent from '@/components/ExerciseCreateComponent'
 import ActionComponent from '@/components/ActionComponent'
 import ActionBreakComponent from '@/components/ActionBreakComponent'
 
@@ -67,9 +67,9 @@ export default new Router({
       component: SessionComponent
     },
     {
-      path: '/workout/:workoutId/set/create',
-      name: 'SetCreate',
-      component: SetCreateComponent
+      path: '/workout/:workoutId/exercises/create',
+      name: 'ExercisesCreate',
+      component: ExerciseCreateComponent
     },
     {
       path: '/action',
