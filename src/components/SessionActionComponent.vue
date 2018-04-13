@@ -1,19 +1,19 @@
 <template>
   <div>
 
-    <h1>Current Exercises : {{ exercises.name }} </h1>
+    <h1>Current Exercises : {{ exercise.name }} </h1>
 
     <div>ElapsedTime: <strong>{{data.elapsedTime}}</strong></div>
 
     <span>_id:</span> <strong>{{workoutId}}</strong>
 
-    <span>comment:</span> <strong>{{exercises.comment}}</strong> <br>
-    <span>image:</span> <strong>{{exercises.image}}</strong> <br>
-    <span>repQuantity:</span> <strong>{{exercises.repQuantity}}</strong> <br>
-    <span>repTime:</span> <strong>{{exercises.repTime}}</strong> <br>
-    <span>timeGoal:</span> <strong>{{exercises.timeGoal}}</strong> <br>
-    <span>weight:</span> <strong>{{exercises.weight}}</strong> <br>
-    <span>weightGoal:</span> <strong>{{exercises.weightGoal}}</strong> <br>
+    <span>comment:</span> <strong>{{exercise.comment}}</strong> <br>
+    <span>image:</span> <strong>{{exercise.image}}</strong> <br>
+    <span>repQuantity:</span> <strong>{{exercise.repQuantity}}</strong> <br>
+    <span>repTime:</span> <strong>{{exercise.repTime}}</strong> <br>
+    <span>timeGoal:</span> <strong>{{exercise.timeGoal}}</strong> <br>
+    <span>weight:</span> <strong>{{exercise.weight}}</strong> <br>
+    <span>weightGoal:</span> <strong>{{exercise.weightGoal}}</strong> <br>
     <br>
 
     <form>
@@ -45,7 +45,7 @@ import ExerciseService from '@/services/ExerciseService'
 export default {
   name: 'Workout',
   props: [
-    "exercises",
+    "exercise",
     "workoutId",
   ],
   data () {

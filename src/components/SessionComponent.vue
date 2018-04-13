@@ -3,6 +3,8 @@
 
     <h1>Session</h1>
 
+    {{setCounter}} of {{currentExercise.numberOfSets}}
+
     <div v-if="!workout">
       Loading...
     </div>
@@ -14,12 +16,12 @@
     <div v-if="workout">
       <SessionActionComponent
         v-if="currentView == 'sessionAction'"
-        :exercises="currentExercises"
+        :exercise="currentExercise"
         :workoutId="workout._id"
         @actionCompleted="onActionCompleted" />
       <SessionBreakComponent
         v-if="currentView == 'sessionBreak'"
-        :exercises="currentExercises"
+        :exercise="currentExercise"
         @breakCompleted="onBreakCompleted" />
     </div>
 
@@ -44,8 +46,9 @@ export default {
     return {
       workoutId: '',
       workout: {},
-      currentExercises: {},
+      currentExercise: {},
       exercisesCounter: 0,
+      setCounter: 0,
       currentView: 'sessionBreak',
     }
   },
@@ -60,18 +63,28 @@ export default {
       this.updateExercises()
     },
     updateExercises () {
-      this.currentExercises = this.workout.exercises[ this.exercisesCounter ]
+      this.currentExercise = this.workout.exercises[ this.exercisesCounter ]
       this.exercisesCounter += 1
     },
     onActionCompleted ( e ) {
       const exercises = this.workout.exercises;
       const lastExercises = exercises[exercises.length -1]
-      if( this.currentExercises.name === lastExercises.name){
-        this.currentView = 'sessionCompleted'
-        return
+
+      if ( this.setCounter >= this.currentExercise.numberOfSets ) {
+        this.setCounter = 0;
+        this.updateExercises()
       }
-      this.updateExercises()
+      else{
+        this.setCounter += 1;
+      }
+
+      if( this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets){
+          this.currentView = 'sessionCompleted'
+          return
+      }
+
       this.currentView = 'sessionBreak'
+
     },
     onBreakCompleted ( e ) {
       this.currentView = 'sessionAction'
