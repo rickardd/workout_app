@@ -32,6 +32,8 @@
 import WorkoutService from '@/services/WorkoutService'
 import SessionActionComponent from './SessionActionComponent'
 import SessionBreakComponent from './SessionBreakComponent'
+import eventBus from '../helpers/EventBus'
+import SETTINGS from '../settings/settings.js'
 
 export default {
   name: 'Session',
@@ -80,6 +82,9 @@ export default {
 
       if( this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets){
           this.currentView = 'sessionCompleted'
+          if (SETTINGS.playSound ) {
+            eventBus.$emit('audio:play', 'lullaby')
+          }
           return
       }
 

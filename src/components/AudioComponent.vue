@@ -11,7 +11,7 @@
       <source src="../audio/jack_in_the_box.mp3" type="audio/mpeg">
     </audio>
     <audio ref="audio4">
-      <source src="../audio/Bleep.mp3" type="audio/mpeg">
+      <source src="../audio/Bleep2.mp3" type="audio/mpeg">
     </audio>
     <audio ref="audio5">
       <source src="../audio/Blop.mp3" type="audio/mpeg">
@@ -44,6 +44,8 @@
 
 <script>
 
+import eventBus from '../helpers/EventBus'
+
 export default {
   name: 'Audio',
   props: [
@@ -57,7 +59,7 @@ export default {
   beforeMount(){
     console.log('mounted', this);
 
-    this.$on('audio:play', this.play );
+    eventBus.$on('audio:play', this.play );
   },
   methods: {
     play( audioName ){

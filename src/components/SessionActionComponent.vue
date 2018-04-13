@@ -41,6 +41,8 @@
 
 <script>
 import ExerciseService from '@/services/ExerciseService'
+import eventBus from '../helpers/EventBus'
+import SETTINGS from '../settings/settings.js'
 
 export default {
   name: 'Workout',
@@ -60,6 +62,9 @@ export default {
   },
   mounted () {
     this.resetElapsedTime()
+    if (SETTINGS.playSound ) {
+      eventBus.$emit('audio:play', 'beep')
+    }
   },
   beforeDestroy () {
     clearInterval(this.timer)
@@ -78,6 +83,9 @@ export default {
       this.elapsedTime = 0
       this.timer = setInterval( () => {
         this.data.elapsedTime += 1;
+        if (this.data.elapsedTime % 5 === 0 && SETTINGS.playSound ) {
+          eventBus.$emit('audio:play', 'blop')
+        }
       }, 1000)
 
     }
