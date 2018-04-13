@@ -1,6 +1,9 @@
 <template>
   <div id="app">
 
+
+    (<span class="icon-th-large"></span>)
+
     <ul>
       <li>
         <router-link to="/">

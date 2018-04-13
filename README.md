@@ -2,11 +2,11 @@
 
 ## RUN Project
 
-./ Root
+./ Root (VUE)
 
-``npm run start // runs on http://localhost:8080`` 
+``npm run start // runs on http://localhost:8080``
 
-./backend
+./backend (Node)
 ``npm run start // runs on http://localhost:3000``
 
 Anywhere
