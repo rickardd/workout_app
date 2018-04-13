@@ -8,22 +8,18 @@ import WorkoutCreateComponent from '@/components/WorkoutCreateComponent'
 import WorkoutsComponent from '@/components/WorkoutsComponent'
 import WorkoutComponent from '@/components/WorkoutComponent'
 import SessionComponent from '@/components/SessionComponent'
-// import SessionActionComponent from '@/components/SessionActionComponent'
-// import SessionBreakComponent from '@/components/SessionBreakComponent'
 import ExerciseCreateComponent from '@/components/ExerciseCreateComponent'
-import ActionComponent from '@/components/ActionComponent'
-import ActionBreakComponent from '@/components/ActionBreakComponent'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: HomeComponent
-    },
+    // {
+    //   path: '/',
+    //   name: 'Home',
+    //   component: HomeComponent
+    // },
     {
       path: '/user/create',
       name: 'Register',
@@ -47,7 +43,7 @@ export default new Router({
       props: true // When props is set to true, the route.params will be set as the component props.
     },
     {
-      path: '/workouts/',
+      path: '/',
       name: 'Workouts',
       component: WorkoutsComponent
     },
@@ -71,16 +67,5 @@ export default new Router({
       name: 'ExercisesCreate',
       component: ExerciseCreateComponent
     },
-    {
-      path: '/action',
-      name: 'ActionCreate',
-      component: ActionComponent
-    },
-    {
-      path: '/action/break/:id',
-      name: 'ActionBreak',
-      component: ActionBreakComponent
-    }
-
   ]
 })

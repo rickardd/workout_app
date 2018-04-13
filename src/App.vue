@@ -1,40 +1,38 @@
 <template>
   <div id="app">
 
-
-    (<span class="icon-th-large"></span>)
-
-    <ul>
-      <li>
+    <ul class="main-nav">
+      <li class="main-nav__item">
         <router-link to="/">
-          /home
+          <span class="main-nav__icon icon-home"></span>
         </router-link>
       </li>
-      <li>
+      <li class="main-nav__item">
         <router-link to="/workouts">
-          /workout : List all workouts
+          <span class="main-nav__icon icon-align-justify"></span>
         </router-link>
       </li>
-      <li>
+      <li class="main-nav__item">
         <router-link to="/workout/create">
-          /workout/create
+          CrW
         </router-link>
       </li>
-      <li>
+      <li class="main-nav__item">
         <router-link to="/exercises/create">
-          /exercises/create
+          CrE
         </router-link>
       </li>
-      <li>
-        <router-link to="/action">
-          /action
+      <li class="main-nav__item">
+        <router-link to="/user/12345">
+          <span class="main-nav__icon icon-torso"></span>
         </router-link>
       </li>
-      <li>
-        <router-link to="/action/break/2342343">
-          /action/break/2342343
+      <li class="main-nav__item">
+        <router-link to="/users">
+          <span class="main-nav__icon icon-group"></span>
         </router-link>
       </li>
+
     </ul>
 
     <router-view/>

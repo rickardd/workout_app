@@ -1,0 +1,27 @@
+@keyframes main-menu-tap {
+  0%   { background: green; }
+  50% { background: red; }
+  100% { background: green; }
+}
+
+.main-nav{
+  @extend .clean-list;
+  display: flex;
+}
+.main-nav__item{
+  background-color: green;
+  flex-grow: 1;
+  padding: 12px;
+  &:not(:first-child){
+    margin-left: 8px;
+  }
+  &:hover{
+    animation: main-menu-tap 2s;
+  }
+}
+.main-nav__icon{
+  color: #000;
+  &:hover{
+    color: #ccc;
+  }
+}

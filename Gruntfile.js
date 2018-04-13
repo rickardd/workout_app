@@ -8,16 +8,24 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                './static/styles/main.css' : './src/styles/src/main.scss'
+                './static/styles/main.css' : './src/scss/main.scss'
             }
         }
     },
+    copy: {
+      main: {
+        files: [
+          {expand: false, src: ['node_modules/normalize.css/normalize.css'], dest: 'src/scss/vendor/normalize.css'}
+          // ...add more objects here
+        ],
+      },
+    },
     watch: {
       scripts: {
-        files: ['./src/styles/src/main.scss'],
+        files: ['./src/scss/**/*.scss'],
         tasks: ['sass'],
         options: {
-          // spawn: false,
+
         },
       },
     },
@@ -25,7 +33,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('default', ['sass']);
+  grunt.registerTask('vendor', ['copy']);
 
 };
