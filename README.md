@@ -57,6 +57,16 @@ npm run start
 # runs on port http://localhost:3000/
 ```
 
+## SETUP HEROKU
+
+make sure heroku cli is installed
+
+``` bash
+  heroku login // this app uses dahlstrom.rickard@gmail.com
+  git push heroku master
+  heroku logs // for debugging
+  heroku run npm install --dev // heroku skipes the dev-dependecies so this whas helpful
+```
 
 ## MongoDB setup
 
