@@ -1,5 +1,20 @@
-@import 'vendor/normalize';
+@import '_variables';
+// @import 'vendor/normalize';
+@import 'vendor/reset';
 @import 'helpers/_elements';
+@import 'layout/_grid';
 @import 'components/_icons';
 @import 'components/_main-nav';
+@import 'components/_lists';
+@import 'components/_exercise';
+@import 'components/_timer';
+
+a:not(.default-link),
+button:not(.default-link){
+  display: inline-block;
+  padding: 6px;
+  background: $secondary;
+  color: $primary;
+  text-decoration: none;
+}
 

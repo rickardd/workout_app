@@ -1,29 +1,65 @@
 <template>
   <div>
 
-    <h1>Break</h1>
+    <h1 class="h1">Break</h1>
 
-    <h2>Get Ready For Next Excercise In : <span>{{breakElapseTime}} Sec</span></h2>
+    <div class="timer">{{breakElapseTime}}</div>
 
-    <h3>{{exercise.name}}</h3>
-    <span>Weight: </span> <span>{{exercise.weightGoal}}</span><br>
-    <span>Rep Time: </span> <span>{{exercise.repsGoal}}</span><br>
-    <span>repQuantity: </span> <span>{{exercise.repQuantity}}</span><br>
-    <span>repTime: </span> <span>{{exercise.repTime}}</span><br>
-    <span>timeGoal: </span> <span>{{exercise.timeGoal}}</span><br>
-    <span>repGoal: </span> <span>{{exercise.repGoal}}</span><br>
-    <span>comment: </span> <span>{{exercise.comment}}</span><br>
-    <span>image: </span> <span>{{exercise.image}}</span><br>
 
-    <div>Average</div>
-    <span>Average weight: </span> <span>x</span><br>
-    <span>Average reps: </span> <span>x</span><br>
+    <ul class="list">
+      <li class="list__item exercise">
+        <div class="h2 exercise__title">
+          <h2 >{{exercise.numberOfSets}}x {{exercise.name}}</h2>
+        </div>
+        <div class="exercise__ex-rep-time">
+           <span>rep interval:</span>
+           <strong>{{exercise.repTime}}</strong>
+         </div>
+          <div class="exercise__ex-rep-quantity">
+           <span>Aim for:</span>
+           <strong>{{exercise.repQuantity}}</strong>
+         </div>
+        <div class="exercise__ex-time-goal">
+           <span>Aim for:</span>
+           <strong>{{exercise.timeGoal}}s</strong>
+         </div>
+        <div class="exercise__ex-weight-goal">
+           <span>Aim for:</span>
+           <strong>{{exercise.weightGoal}}kg</strong>
+         </div>
 
-    <div>Personal best</div>
-    <span>PB weight: </span> <span>x</span><br>
-    <span>PB reps: </span> <span>x</span><br>
+         <div class="exercise__ex-avg-weight">
+           <span>Average weight:</span>
+           <strong>- kg</strong>
+         </div>
+         <div class="exercise__ex-avg-reps">
+           <span>Average reps:</span>
+           <strong>- reps</strong>
+         </div>
 
-    <button type="button">Lock</button>
+         <div class="exercise__ex-pb-weight">
+           <span>PB weight:</span>
+           <strong>- kg</strong>
+         </div>
+         <div class="exercise__ex-pb-reps">
+           <span>PB reps:</span>
+           <strong>- reps</strong>
+         </div>
+
+        <div class="exercise__ex-comment">
+            <span class="icon-comment"></span>
+            {{exercise.comment}}
+        </div>
+      </li>
+    </ul>
+
+    <br>
+    <br>
+
+    <button type="button">
+      <span class="icon-lock-open"></span>
+      Lock
+    </button>
 
   </div>
 </template>
@@ -54,7 +90,7 @@ export default {
   },
   methods: {
     restartBreakElapseTime () {
-      this.breakElapseTime = 4
+      this.breakElapseTime = 30
       return new Promise( (resolve, reject) => {
         this.timer = setInterval( () => {
           this.breakElapseTime -= 1;

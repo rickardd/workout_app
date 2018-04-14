@@ -15,7 +15,8 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: false, src: ['node_modules/normalize.css/normalize.css'], dest: 'src/scss/vendor/normalize.css'}
+          {expand: false, src: ['node_modules/normalize.css/normalize.css'], dest: 'src/scss/vendor/normalize.css'},
+          {expand: false, src: ['node_modules/simple-css-reset/reset.css'], dest: 'src/scss/vendor/reset.css'}
           // ...add more objects here
         ],
       },

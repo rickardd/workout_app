@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "normalize.css": "^8.0.0",
+    "simple-css-reset": "^2.0.6",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

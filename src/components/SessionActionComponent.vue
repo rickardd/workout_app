@@ -1,24 +1,45 @@
 <template>
   <div>
 
-    <h1>Current Exercises : {{ exercise.name }} </h1>
+    <h1 class="h1">Exercises : {{ exercise.name }} </h1>
 
-    <div>ElapsedTime: <strong>{{data.elapsedTime}}</strong></div>
+    <div class="timer">{{data.elapsedTime}}</div>
 
-    <span>_id:</span> <strong>{{workoutId}}</strong>
+    <ul class="list">
+      <li class="list__item exercise">
+        <div class="h2 exercise__title">
+          <h2 >{{exercise.numberOfSets}}x {{exercise.name}}</h2>
+        </div>
+        <div class="exercise__ex-rep-time">
+           <span>rep interval:</span>
+           <strong>{{exercise.repTime}}</strong>
+         </div>
+          <div class="exercise__ex-rep-quantity">
+           <span>Aim for:</span>
+           <strong>{{exercise.repQuantity}}</strong>
+         </div>
+        <div class="exercise__ex-time-goal">
+           <span>Aim for:</span>
+           <strong>{{exercise.timeGoal}}s</strong>
+         </div>
+        <div class="exercise__ex-weight-goal">
+           <span>Aim for:</span>
+           <strong>{{exercise.weightGoal}}kg</strong>
+         </div>
+        <div class="exercise__ex-comment">
+            <span class="icon-comment"></span>
+            {{exercise.comment}}
+        </div>
+      </li>
+    </ul>
 
-    <span>comment:</span> <strong>{{exercise.comment}}</strong> <br>
-    <span>image:</span> <strong>{{exercise.image}}</strong> <br>
-    <span>repQuantity:</span> <strong>{{exercise.repQuantity}}</strong> <br>
-    <span>repTime:</span> <strong>{{exercise.repTime}}</strong> <br>
-    <span>timeGoal:</span> <strong>{{exercise.timeGoal}}</strong> <br>
-    <span>weight:</span> <strong>{{exercise.weight}}</strong> <br>
-    <span>weightGoal:</span> <strong>{{exercise.weightGoal}}</strong> <br>
+    <br>
     <br>
 
     <form>
       <input
         type="number"
+        class='input'
         name="reps"
         autocomplete="off"
         placeholder="reps"
@@ -26,6 +47,7 @@
         v-model.number="data.reps">
       <input
         type="number"
+        class='input'
         name="weight"
         autocomplete="off"
         placeholder="weight"

@@ -1,0 +1,40 @@
+
+.exercise{
+  display: flex;
+  flex-wrap: wrap;
+}
+.exercise__title{
+  width: 100%;
+  margin-bottom: 4px;
+}
+.exercise__ex-rep-time{
+  width: 50%;
+  margin-bottom: 6px;
+}
+.exercise__ex-time-goal{
+  width: 50%;
+  margin-bottom: 6px;
+}
+.exercise__ex-weight-goal{
+  width: 50%;
+  margin-bottom: 6px;
+}
+.exercise__ex-comment{
+  width: 100%;
+}
+.exercise__ex-avg-weight{
+  width: 50%;
+  margin-bottom: 6px;
+}
+.exercise__ex-avg-reps{
+  width: 50%;
+  margin-bottom: 6px;
+}
+.exercise__ex-pb-weight{
+  width: 50%;
+  margin-bottom: 6px;
+}
+.exercise__ex-pb-reps{
+  width: 50%;
+  margin-bottom: 6px;
+}

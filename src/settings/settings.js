@@ -1,5 +1,5 @@
 const SETTINGS = {
-  playSound: true
+  playSound: false
 }
 
 export default SETTINGS;

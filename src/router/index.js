@@ -15,11 +15,11 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'Home',
-    //   component: HomeComponent
-    // },
+    {
+      path: '/',
+      name: 'Home',
+      component: HomeComponent
+    },
     {
       path: '/user/create',
       name: 'Register',
@@ -43,7 +43,7 @@ export default new Router({
       props: true // When props is set to true, the route.params will be set as the component props.
     },
     {
-      path: '/',
+      path: '/workouts',
       name: 'Workouts',
       component: WorkoutsComponent
     },

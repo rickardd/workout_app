@@ -3,3 +3,25 @@
     margin: 0;
     list-style: none;
 }
+
+.h1{
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.h2{
+ font-size: 1.5rem;
+ font-weight: bold;
+}
+.h3{
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.input{
+  padding: 6px;
+  border: 1px solid $secondary;
+  background-color: rgba(255,255,255,.12);
+  color: $secondary;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}

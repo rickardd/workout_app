@@ -1,27 +1,43 @@
 <template>
-  <div>
+  <article>
 
-    <h1>Workout : {{ workout.workout }} </h1>
+    <div>Workout</div>
+    <h1 class="h1">{{ workout.workout }} </h1>
 
-    <div v-for="exercises in workout.exercises">
-      <h2>{{exercises.name}}</h2>
-      <span>number of exercises:</span> <strong>{{exercises.numberOfSets}}</strong> <br>
-      <span>repTime:</span> <strong>{{exercises.repTime}}</strong> <br>
-      <span>timeGoal:</span> <strong>{{exercises.timeGoal}}</strong> <br>
-      <span>weightGoal:</span> <strong>{{exercises.weightGoal}}</strong> <br>
-      <span>comment:</span> <strong>{{exercises.comment}}</strong> <br>
-      <span>image:</span> <strong>{{exercises.image}}</strong> <br>
-      <br>
-      <hr>
-      <br>
-    </div>
-
-    <a :href="createExercisesUrl()">Add Exercises</a>
+    <a :href="createExercisesUrl()">
+      <span class="icon-plus"></span>
+    </a>
+    <a :href="sessionUrl()">
+      <span class="icon-right"></span>
+    </a>
     <br>
     <br>
-    <a :href="sessionUrl()">Start workout</a>
 
-  </div>
+    <ul class="list">
+      <li class="list__item exercise" v-for="exercises in workout.exercises">
+        <div class="h2 exercise__title">
+          <h2 >{{exercises.numberOfSets}}x {{exercises.name}}</h2>
+        </div>
+        <div class="exercise__ex-rep-time">
+           <span>rep interval:</span>
+           <strong>{{exercises.repTime}}</strong>
+         </div>
+        <div class="exercise__ex-time-goal">
+           <span>Aim for:</span>
+           <strong>{{exercises.timeGoal}}s</strong>
+         </div>
+        <div class="exercise__ex-weight-goal">
+           <span>Aim for:</span>
+           <strong>{{exercises.weightGoal}}kg</strong>
+         </div>
+        <div class="exercise__ex-comment">
+            <span class="icon-comment"></span>
+            {{exercises.comment}}
+        </div>
+      </li>
+    </ul>
+
+  </article>
 </template>
 
 <script>
@@ -59,5 +75,7 @@ export default {
 </script>
 
 <style scoped>
+
+
 
 </style>

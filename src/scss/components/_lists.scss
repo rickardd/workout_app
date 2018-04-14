@@ -1,0 +1,8 @@
+.list{
+  @extend .clean-list;
+}
+
+.list__item{
+  padding: 6px;
+  border-bottom: 1px dashed $secondary;
+}

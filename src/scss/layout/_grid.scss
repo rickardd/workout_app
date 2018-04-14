@@ -1,0 +1,22 @@
+.grid{
+  background: $primary;
+  color: $secondary;
+  height: 100vh;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr 50px ;
+  grid-template-areas:
+    "content"
+    "menu";
+}
+
+.grid__item--main{
+  grid-area: content;
+  padding: 12px;
+  overflow-y: scroll;
+}
+
+.grid__item--menu{
+  grid-area: menu;
+}

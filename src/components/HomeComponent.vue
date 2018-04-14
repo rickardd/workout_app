@@ -1,9 +1,14 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <h1 class="h1">Home</h1>
 
     <router-link to="/workout/create">
-      /workout/create
+      Create a workout
+    </router-link>
+    <br>
+    <br>
+    <router-link to="/workouts/">
+      See all workouts
     </router-link>
 
   </div>

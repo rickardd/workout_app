@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <audio ref="audio1">
       <source src="../audio/Heartbeat.mp3" type="audio/mpeg">
     </audio>
@@ -28,17 +27,6 @@
     <audio ref="audio9">
       <source src="../audio/Woosh.mp3" type="audio/mpeg">
     </audio>
-
-    <button @click="play('heartbeat')" type="button">Play Audio</button>
-    <button @click="play('pop_banner')" type="button">Play Audio</button>
-    <button @click="play('lullaby')" type="button">Play Audio</button>
-    <button @click="play('beep')" type="button">Play Audio</button>
-    <button @click="play('blop')" type="button">Play Audio</button>
-    <button @click="play('pling')" type="button">Play Audio</button>
-    <button @click="play('robot_blip')" type="button">Play Audio</button>
-    <button @click="play('robot_blip_2')" type="button">Play Audio</button>
-    <button @click="play('woosh')" type="button">Play Audio</button>
-
   </div>
 </template>
 
@@ -57,8 +45,6 @@ export default {
     }
   },
   beforeMount(){
-    console.log('mounted', this);
-
     eventBus.$on('audio:play', this.play );
   },
   methods: {
