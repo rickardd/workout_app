@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     restartBreakElapseTime () {
-      this.breakElapseTime = 30
+      this.breakElapseTime = 5
       return new Promise( (resolve, reject) => {
         this.timer = setInterval( () => {
           this.breakElapseTime -= 1;

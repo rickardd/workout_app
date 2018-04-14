@@ -1,49 +1,37 @@
 <template>
   <div id="app">
     <main class="grid">
+      <div class="grid__item grid__item--top-bar">
+        <ul class="top-bar">
+          <li class="top-bar__item icon-left-open"></li>
+          <li class="top-bar__item icon-volume"></li>
+          <li class="top-bar__item icon-cog"></li>
+          <li class="top-bar__item icon-right-open"></li>
+        </ul>
+      </div>
       <div class="grid__item grid__item--main">
-        <span class="icon-left-open"></span>
-        <span class="icon-wrench"></span>
-        <span class="icon-spin2"></span>
-        <span class="icon-plus-circled"></span>
-        <span class="icon-cog"></span>
-        <span class="icon-gauge"></span>
-        <span class="icon-right-open"></span>
-        <br>
-        <br>
-
         <router-view/>
       </div>
       <div class="grid__item grid__item--menu">
         <ul class="main-nav">
           <li class="main-nav__item">
-            <router-link to="/" class="default-link">
-              <span class="main-nav__icon icon-home"></span>
+            <router-link to="/" class="default-link main-nav__icon">
+              <span class="icon-home"></span>
             </router-link>
           </li>
           <li class="main-nav__item">
-            <router-link to="/workouts" class="default-link">
-              <span class="main-nav__icon icon-align-justify"></span>
+            <router-link to="/workouts" class="default-link main-nav__icon">
+              <span class="icon-align-justify"></span>
             </router-link>
           </li>
           <li class="main-nav__item">
-            <router-link to="/workout/create" class="default-link">
-              CrW
+            <router-link to="/user/12345" class="default-link main-nav__icon">
+              <span class="icon-torso"></span>
             </router-link>
           </li>
           <li class="main-nav__item">
-            <router-link to="/exercises/create" class="default-link">
-              CrE
-            </router-link>
-          </li>
-          <li class="main-nav__item">
-            <router-link to="/user/12345" class="default-link">
-              <span class="main-nav__icon icon-torso"></span>
-            </router-link>
-          </li>
-          <li class="main-nav__item">
-            <router-link to="/users" class="default-link">
-              <span class="main-nav__icon icon-group"></span>
+            <router-link to="/users" class="default-link main-nav__icon">
+              <span class="icon-group"></span>
             </router-link>
           </li>
         </ul>

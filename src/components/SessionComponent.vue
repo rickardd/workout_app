@@ -1,11 +1,16 @@
 <template>
   <div>
 
-    <h1>Session</h1>
-
-    {{setCounter}} of {{currentExercise.numberOfSets}}
+    {{setCounter}} of
+    <span v-if="currentExercise.numberOfSets">
+      {{currentExercise.numberOfSets}}
+    </span>
+    <span v-else>
+      0
+    </span>
 
     <div v-if="!workout">
+      <div class="icon-spin2"></div>
       Loading...
     </div>
 
