@@ -38,7 +38,6 @@ app.use('/journal', journals);
 
 app.use(serveStatic(__dirname + "/dist"));
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -55,6 +54,13 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// this line allows heroku to set the port
+var port = process.env.PORT || 3000;
+
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
 });
 
 module.exports = app;
