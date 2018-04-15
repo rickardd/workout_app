@@ -2,12 +2,12 @@
   <div class="">
     <h1>Lists all users</h1>
 
-    <a href="/user/create">create new user</a>
+    <<router-link to="/user/create">create new user</router-link>
 
     <ul v-for="user in users" :key="user.id">
       <li>
         {{user.name}} ({{user.surname}})
-        <a :href="'/user/' + user._id">view</a>
+        <router-link :to="'/user/' + user._id">view</router-link>
         <button @click="onDelete(user._id)">delete</button>
         <a :href="'/user/update/' + user._id">update</a>
       </li>

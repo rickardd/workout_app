@@ -1,0 +1,624 @@
+@charset "UTF-8";
+/*
+  The code below has been extracted from the following projects:
+
+  - https://github.com/murtaugh/HTML5-Reset
+  - http://meyerweb.com
+  - http://html5doctor.com
+  - http://html5boilerplate.com
+
+  … and then cleaned up a lot.
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+code,
+em,
+img,
+small,
+strong,
+sub,
+sup,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+footer,
+header,
+nav,
+section,
+time,
+audio,
+video {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  font-size: 100%;
+  font-weight: inherit;
+  vertical-align: baseline; }
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section {
+  display: block; }
+
+html {
+  box-sizing: border-box;
+  overflow-y: scroll; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+img,
+object {
+  max-width: 100%; }
+
+ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+th {
+  font-weight: bold;
+  vertical-align: bottom; }
+
+td {
+  font-weight: normal;
+  vertical-align: top; }
+
+input,
+select {
+  vertical-align: middle; }
+
+input[type='radio'] {
+  vertical-align: text-bottom; }
+
+input[type='checkbox'] {
+  vertical-align: bottom; }
+
+strong {
+  font-weight: bold; }
+
+label,
+input[type='file'] {
+  cursor: pointer; }
+
+input,
+select,
+textarea {
+  border: 0;
+  margin: 0; }
+
+button,
+input[type='button'],
+input[type='submit'] {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer; }
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0; }
+
+.clean-list, .main-nav, .list {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
+.h1 {
+  font-size: 1.7rem;
+  font-weight: bold; }
+
+.h2 {
+  font-size: 1.5rem;
+  font-weight: bold; }
+
+.h3 {
+  font-size: 1.1rem;
+  font-weight: bold; }
+
+.input {
+  padding: 6px;
+  border: 1px solid #f3e8c6;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #f3e8c6;
+  font-size: 0.8rem;
+  margin-bottom: 5px; }
+
+.grid {
+  background: #6f000f;
+  color: #f3e8c6;
+  height: 100vh;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100%;
+  grid-template-rows: 20px 1fr 50px;
+  grid-template-areas: "top-bar" "content" "menu"; }
+
+.grid__item--top-bar {
+  grid-area: top-bar; }
+
+.grid__item--main {
+  grid-area: content;
+  padding: 12px;
+  overflow-y: scroll; }
+
+.grid__item--menu {
+  grid-area: menu; }
+
+@font-face {
+  font-family: 'fontello';
+  src: url("../fonts/fontello.eot?8648314");
+  src: url("../fonts/fontello.eot?8648314#iefix") format("embedded-opentype"), url("../fonts/fontello.woff2?8648314") format("woff2"), url("../fonts/fontello.woff?8648314") format("woff"), url("../fonts/fontello.ttf?8648314") format("truetype"), url("../fonts/fontello.svg?8648314#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?8648314#fontello') format('svg');
+  }
+}
+*/
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
+
+.icon-th-large:before {
+  content: '\e800'; }
+
+/* '' */
+.icon-th:before {
+  content: '\e801'; }
+
+/* '' */
+.icon-th-list:before {
+  content: '\e802'; }
+
+/* '' */
+.icon-list:before {
+  content: '\e803'; }
+
+/* '' */
+.icon-home:before {
+  content: '\e804'; }
+
+/* '' */
+.icon-home-circled:before {
+  content: '\e805'; }
+
+/* '' */
+.icon-backward:before {
+  content: '\e806'; }
+
+/* '' */
+.icon-backward-circled:before {
+  content: '\e807'; }
+
+/* '' */
+.icon-fast-backward:before {
+  content: '\e808'; }
+
+/* '' */
+.icon-step-backward:before {
+  content: '\e809'; }
+
+/* '' */
+.icon-share:before {
+  content: '\e80a'; }
+
+/* '' */
+.icon-fast-forward:before {
+  content: '\e80b'; }
+
+/* '' */
+.icon-forward:before {
+  content: '\e80c'; }
+
+/* '' */
+.icon-forward-circled:before {
+  content: '\e80d'; }
+
+/* '' */
+.icon-step-forward:before {
+  content: '\e80e'; }
+
+/* '' */
+.icon-down-open:before {
+  content: '\e80f'; }
+
+/* '' */
+.icon-left-open:before {
+  content: '\e810'; }
+
+/* '' */
+.icon-right-open:before {
+  content: '\e811'; }
+
+/* '' */
+.icon-up-open:before {
+  content: '\e812'; }
+
+/* '' */
+.icon-down:before {
+  content: '\e813'; }
+
+/* '' */
+.icon-left:before {
+  content: '\e814'; }
+
+/* '' */
+.icon-right:before {
+  content: '\e815'; }
+
+/* '' */
+.icon-up:before {
+  content: '\e816'; }
+
+/* '' */
+.icon-down-circled:before {
+  content: '\e817'; }
+
+/* '' */
+.icon-left-circled:before {
+  content: '\e818'; }
+
+/* '' */
+.icon-right-circled:before {
+  content: '\e819'; }
+
+/* '' */
+.icon-up-circled:before {
+  content: '\e81a'; }
+
+/* '' */
+.icon-arrows-cw:before {
+  content: '\e81b'; }
+
+/* '' */
+.icon-floppy:before {
+  content: '\e81c'; }
+
+/* '' */
+.icon-cw:before {
+  content: '\e81d'; }
+
+/* '' */
+.icon-download-alt:before {
+  content: '\e81e'; }
+
+/* '' */
+.icon-clock:before {
+  content: '\e81f'; }
+
+/* '' */
+.icon-cancel:before {
+  content: '\e820'; }
+
+/* '' */
+.icon-cancel-circled:before {
+  content: '\e821'; }
+
+/* '' */
+.icon-cancel-circled2:before {
+  content: '\e822'; }
+
+/* '' */
+.icon-lock:before {
+  content: '\e823'; }
+
+/* '' */
+.icon-folder-close:before {
+  content: '\e824'; }
+
+/* '' */
+.icon-user:before {
+  content: '\e825'; }
+
+/* '' */
+.icon-torso:before {
+  content: '\e826'; }
+
+/* '' */
+.icon-group:before {
+  content: '\e827'; }
+
+/* '' */
+.icon-heart:before {
+  content: '\e828'; }
+
+/* '' */
+.icon-heart-empty:before {
+  content: '\e829'; }
+
+/* '' */
+.icon-star:before {
+  content: '\e82a'; }
+
+/* '' */
+.icon-star-empty:before {
+  content: '\e82b'; }
+
+/* '' */
+.icon-ok:before {
+  content: '\e82c'; }
+
+/* '' */
+.icon-plus:before {
+  content: '\e82d'; }
+
+/* '' */
+.icon-minus:before {
+  content: '\e82e'; }
+
+/* '' */
+.icon-plus-circled:before {
+  content: '\e82f'; }
+
+/* '' */
+.icon-spin1:before {
+  content: '\e830'; }
+
+/* '' */
+.icon-spin2:before {
+  content: '\e831'; }
+
+/* '' */
+.icon-minus-circled:before {
+  content: '\e832'; }
+
+/* '' */
+.icon-help:before {
+  content: '\e833'; }
+
+/* '' */
+.icon-help-circled:before {
+  content: '\e834'; }
+
+/* '' */
+.icon-info-circled:before {
+  content: '\e835'; }
+
+/* '' */
+.icon-lock-open:before {
+  content: '\e836'; }
+
+/* '' */
+.icon-comment:before {
+  content: '\e837'; }
+
+/* '' */
+.icon-bell:before {
+  content: '\e838'; }
+
+/* '' */
+.icon-trash:before {
+  content: '\e839'; }
+
+/* '' */
+.icon-doc:before {
+  content: '\e83a'; }
+
+/* '' */
+.icon-doc-new-circled:before {
+  content: '\e83b'; }
+
+/* '' */
+.icon-doc-new:before {
+  content: '\e83c'; }
+
+/* '' */
+.icon-folder-open:before {
+  content: '\e83d'; }
+
+/* '' */
+.icon-cog:before {
+  content: '\e83e'; }
+
+/* '' */
+.icon-cogs:before {
+  content: '\e83f'; }
+
+/* '' */
+.icon-wrench:before {
+  content: '\e840'; }
+
+/* '' */
+.icon-calendar:before {
+  content: '\e841'; }
+
+/* '' */
+.icon-volume-off:before {
+  content: '\e842'; }
+
+/* '' */
+.icon-volume-down:before {
+  content: '\e843'; }
+
+/* '' */
+.icon-volume:before {
+  content: '\e844'; }
+
+/* '' */
+.icon-volume-up:before {
+  content: '\e845'; }
+
+/* '' */
+.icon-headphones:before {
+  content: '\e846'; }
+
+/* '' */
+.icon-align-justify:before {
+  content: '\e847'; }
+
+/* '' */
+.icon-off:before {
+  content: '\e848'; }
+
+/* '' */
+.icon-filter:before {
+  content: '\e849'; }
+
+/* '' */
+.icon-gauge:before {
+  content: '\e84a'; }
+
+/* '' */
+.icon-history:before {
+  content: '\f1da'; }
+
+/* '' */
+@keyframes main-menu-tap {
+  0% {
+    background: rgba(0, 0, 0, 0.1); }
+  50% {
+    background: rgba(0, 0, 0, 0.4); }
+  100% {
+    background: rgba(0, 0, 0, 0.1); } }
+
+.main-nav {
+  display: flex;
+  height: 100%; }
+
+.main-nav__item {
+  background-color: rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  padding: 12px;
+  height: 100%;
+  display: flex; }
+  .main-nav__item:not(:first-child) {
+    margin-left: 1px; }
+  .main-nav__item:hover {
+    animation: main-menu-tap 2s; }
+
+.main-nav__icon {
+  color: #f3e8c6;
+  margin: auto; }
+
+.list__item {
+  padding: 6px;
+  border-bottom: 1px dashed #f3e8c6; }
+
+.exercise {
+  display: flex;
+  flex-wrap: wrap; }
+
+.exercise__title {
+  width: 100%;
+  margin-bottom: 4px; }
+
+.exercise__ex-rep-time {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.exercise__ex-time-goal {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.exercise__ex-weight-goal {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.exercise__ex-comment {
+  width: 100%; }
+
+.exercise__ex-avg-weight {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.exercise__ex-avg-reps {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.exercise__ex-pb-weight {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.exercise__ex-pb-reps {
+  width: 50%;
+  margin-bottom: 6px; }
+
+.timer {
+  font-size: 4rem;
+  margin: 24px auto;
+  text-align: center; }
+
+.top-bar {
+  display: flex;
+  justify-content: space-between; }
+
+.top-bar__item {
+  padding: 12px; }
+
+a:not(.default-link),
+button:not(.default-link) {
+  display: inline-block;
+  padding: 6px;
+  background: #f3e8c6;
+  color: #6f000f;
+  text-decoration: none; }
+
+/*# sourceMappingURL=main.css.map */

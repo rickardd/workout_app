@@ -4,12 +4,12 @@
     <div>Workout</div>
     <h1 class="h1">{{ workout.workout }} </h1>
 
-    <a :href="createExercisesUrl()">
+    <router-link :to="createExercisesUrl()">
       <span class="icon-plus"></span>
-    </a>
-    <a :href="sessionUrl()">
+    </router-link>
+    <router-link :to="sessionUrl()">
       <span class="icon-right"></span>
-    </a>
+    </router-link>
     <br>
     <br>
 

@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "prod": "npm run prod --prefix backend/",
+    "start": "npm run prod",
     "startdev": "npm run dev & grunt watch",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "normalize.css": "^8.0.0",
     "simple-css-reset": "^2.0.6",
     "vue": "^2.5.2",

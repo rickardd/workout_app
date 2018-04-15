@@ -39,7 +39,7 @@
 
     <br>
 
-    <a href="/users">Back to users</a>
+    <router-link to="/users">Back to users</router-link>
   </div>
 </template>
 
