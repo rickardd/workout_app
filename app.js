@@ -57,7 +57,7 @@ app.use(function(err, req, res, next) {
 });
 
 // this line allows heroku to set the port
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 
 app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
