@@ -18,10 +18,10 @@
     <div v-if="!!workout._id">
       <hr>
       <h1>{{workout.workout}} created</h1>
-      <a :href="workoutUrl()">Go to workout</a>
+      <router-link :href="workoutUrl()">Go to workout</router-link>
     </div>
     <br>
-    
+
   </div>
 </template>
 

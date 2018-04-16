@@ -6,7 +6,10 @@
     <div v-if="!!workouts.length">
       <ul class="list">
         <li v-for="workout in workouts" class="list__item">
-          <a :href="workoutUrl(workout._id)">{{workout.workout}}</a>
+          <router-link :to="workoutUrl(workout._id)">
+            {{workout.workout}}
+          </router-link>
+          <!-- <a :href="workoutUrl(workout._id)">{{workout.workout}}</a> -->
           <span v-if="workout.exercises">{{workout.exercises.length}} exercises</span>
         </li>
       </ul>
@@ -18,7 +21,7 @@
       No worrie...
       <br>
       <br>
-      <a href="/workout/create">Create my fist workout :)</a>
+      <router-link to="/workout/create">Create my fist workout :)</router-link>
 
     </div>
 
