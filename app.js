@@ -17,8 +17,8 @@ var journals = require('./routes/journals');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'dist'));
+app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,7 +26,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'dist')));
+
+var options = {
+  dotfiles: 'ignore',
+  etag: false,
+  extensions: ['html'],
+  index: false,
+  maxAge: '1d',
+  redirect: false,
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now())
+  }
+}
+
+app.use(express.static(path.join(__dirname, 'dist'), options));
 app.use(cors());
 
 app.use('/', index);
@@ -36,7 +49,14 @@ app.use('/exercises', exercises);
 app.use('/journal', journals);
 
 
-app.use(serveStatic(__dirname + "/dist"));
+
+
+
+// app.use(express.static('/dist', options))
+
+// app.use(serveStatic(__dirname + "/dist"));
+// app.use(serveStatic(__dirname + "/dist", {'index': ['index.html', 'index.htm']}));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
