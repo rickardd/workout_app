@@ -18,7 +18,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'dist'));
-// app.set('view engine', 'jade');
+app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -37,6 +37,8 @@ app.use('/journal', journals);
 
 
 app.use(serveStatic(__dirname + "/dist"));
+// app.use(serveStatic(__dirname + "/dist", {'index': ['index.html', 'index.htm']}));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
