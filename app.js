@@ -26,7 +26,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'dist')));
+
+var options = {
+  dotfiles: 'ignore',
+  etag: false,
+  extensions: ['html'],
+  index: false,
+  maxAge: '1d',
+  redirect: false,
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now())
+  }
+}
+
+app.use(express.static(path.join(__dirname, 'dist'), options));
 app.use(cors());
 
 app.use('/', index);
@@ -36,8 +49,13 @@ app.use('/exercises', exercises);
 app.use('/journal', journals);
 
 
+
+
+
+// app.use(express.static('/dist', options))
+
 // app.use(serveStatic(__dirname + "/dist"));
-app.use(serveStatic(__dirname + "/dist", {'index': ['index.html', 'index.htm']}));
+// app.use(serveStatic(__dirname + "/dist", {'index': ['index.html', 'index.htm']}));
 
 
 // catch 404 and forward to error handler
