@@ -36,8 +36,8 @@ app.use('/exercises', exercises);
 app.use('/journal', journals);
 
 
-app.use(serveStatic(__dirname + "/dist"));
-// app.use(serveStatic(__dirname + "/dist", {'index': ['index.html', 'index.htm']}));
+// app.use(serveStatic(__dirname + "/dist"));
+app.use(serveStatic(__dirname + "/dist", {'index': ['index.html', 'index.htm']}));
 
 
 // catch 404 and forward to error handler
