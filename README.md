@@ -84,6 +84,14 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongod
 
 ``mongod // run database``
 
+## mLab
+
+```
+// bash connect to mLab
+// replace username and password with the users set in mLab
+$ mongo ds249249.mlab.com:49249/workout_app -u username -p password
+
+```
 
 ## How this project is set up.
 

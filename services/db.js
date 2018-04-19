@@ -2,7 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 const mongo = require('mongodb');
 
 // Connection URL
-const url = 'mongodb://127.0.0.1:27017';
+// const url = 'mongodb://127.0.0.1:27017';
+const url = 'mongodb://admin:admin@ds249249.mlab.com:49249/workout_app';
 
 // Database Name
 const dbName = 'workout_app';
@@ -18,7 +19,6 @@ module.exports.insertUser = function(doc, callback) {
       callback(doc);
       client.close();
     });
-
   });
 };
 

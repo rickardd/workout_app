@@ -27,20 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// var options = {
-//   dotfiles: 'ignore',
-//   etag: false,
-//   extensions: ['html'],
-//   index: false,
-//   maxAge: '1d',
-//   redirect: false,
-//   setHeaders: function (res, path, stat) {
-//     res.set('x-timestamp', Date.now())
-//   }
-// }
-
 app.use(serveStatic(__dirname + '/dist')); // works
-// app.use(express.static(path.join(__dirname, 'dist'), options));
+// app.use(express.static(path.join(__dirname, 'dist'))); // does not work. Looking for extra css and js files
 app.use(cors());
 
 app.use('/', index);
