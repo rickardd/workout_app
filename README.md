@@ -2,27 +2,56 @@
 
 ## RUN Project
 
-./ Root (VUE)
+``./vue`` *Root (VUE)*
 
 ``npm run start // runs on http://localhost:8080``
 
-./backend (Node)
-``npm run start // runs on http://localhost:3000``
+``npm run build // builds the project to ``
 
-Anywhere
+
+``./`` *(Node server)*
+
+``npm run dev // runs on http://localhost:3001``
+
+``npm run start // this command is for heroku``
+
+*Start MongoDB anywhere*
+
 ``mongod // start the database``
+
 ``mongo // start the shell	``
 
-## Front end Build and Setup
+## Build and Deploy
+
+```
+// in ./vue
+npm run build // builds to parent .dist/
+
+// commit changes and...
+git push heroku master // pushes changes to heroku repository and builds ./ node server.
+```
+
+## Vue Setup
 
 ``` bash
+# Move to right directory
+cd vue
+
 # install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
 
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Vue Build
+
+``` bash
 # build for production with minification
+# builds to parent ../dist folder
 npm run build
 
 # build for production and view the bundle analyzer report
@@ -38,15 +67,23 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Vue Test
 
+``` bash
+# run unit tests
+npm run unit
 
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
+```
 
 ## SETUP UP NODE/EXPRESS
 
 ``` bash
-# get into backend folder
-cd backend
+# get into ./ folder
 
 # install dependencies
 npm install
@@ -54,7 +91,7 @@ npm install
 # Run project
 npm run start
 
-# runs on port http://localhost:3000/
+# runs on port http://localhost:3001/
 ```
 
 ## SETUP HEROKU
@@ -63,9 +100,11 @@ make sure heroku cli is installed
 
 ``` bash
   heroku login // this app uses dahlstrom.rickard@gmail.com
-  git push heroku master
+  git push heroku master // push and deploy. remember to build vue before
   heroku logs // for debugging
-  heroku run npm install --dev // heroku skipes the dev-dependecies so this whas helpful
+  # Set up mongo instance with heroku
+  # Replace username and password with the users settings in mLab
+  heroku config:set MONGOLAB_URI='mongodb://username:password@ds249249.mlab.com:49249/workout_app'
 ```
 
 ## MongoDB setup
@@ -87,7 +126,7 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongod
 ## mLab
 
 ```
-// bash connect to mLab
+// Test remote mLab database from bash
 // replace username and password with the users set in mLab
 $ mongo ds249249.mlab.com:49249/workout_app -u username -p password
 
@@ -97,11 +136,11 @@ $ mongo ds249249.mlab.com:49249/workout_app -u username -p password
 
 ### Vue
 
-Root directory is installed with vue-cli with test, eslint and webpack
+Root ./vue is installed with vue-cli with test, eslint and webpack
 
 ### Node/Express
 
-The backend direcorty is installed with express-generator
+The ./ direcorty is installed with express-generator
 
 
 
