@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1 class="h1">Workouts</h1>
+    <h1 class="title">Workouts</h1>
 
     <div v-if="!!workouts.length">
       <ul class="list">

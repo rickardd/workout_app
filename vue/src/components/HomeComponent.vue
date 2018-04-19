@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="h1">Home</h1>
+    <h1 class="title">Home</h1>
 
     <router-link to="/workout/create">
       Create a workout

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>Create Exercises in...</div>
-    <h1 class="h1"> {{workout.workout}}</h1>
+    <h1 class="title">{{workout.workout}}</h1>
     <form>
       <input
         type="text"

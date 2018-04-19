@@ -1,8 +1,8 @@
 <template>
-  <div class="">
-    <h1>Lists all users</h1>
+  <div >
+    <h1 class="title">Lists all users</h1>
 
-    <<router-link to="/user/create">create new user</router-link>
+    <router-link to="/user/create">create new user</router-link>
 
     <ul v-for="user in users" :key="user.id">
       <li>

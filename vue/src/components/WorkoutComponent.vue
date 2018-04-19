@@ -1,8 +1,7 @@
 <template>
   <article>
 
-    <div>Workout</div>
-    <h1 class="h1">{{ workout.workout }} </h1>
+    <h1 class="title">Workout: {{ workout.workout }} </h1>
 
     <router-link :to="createExercisesUrl()">
       <span class="icon-plus"></span>

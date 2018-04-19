@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1 class="h1">Break</h1>
+    <h1 class="title">Break</h1>
 
     <div class="timer">{{breakElapseTime}}</div>
 

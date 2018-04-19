@@ -1,5 +1,7 @@
 <template>
   <div>
+
+    <h1 class="title">Create Workout</h1>
     <form>
       <input
         type="text"

@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1 class="h1">Exercises : {{ exercise.name }} </h1>
+    <h1 class="title">Exercises : {{ exercise.name }} </h1>
 
     <div class="timer">{{data.elapsedTime}}</div>
 

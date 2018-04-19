@@ -1,8 +1,7 @@
 <template>
-  <div class="">
+  <div>
 
-    <h1>{{user.name}} ({{user.surname}})</h1>
-
+    <h1 class="title">User: {{user.name}} ({{user.surname}})</h1>
     id:{{user._id}}
     <br>
 
