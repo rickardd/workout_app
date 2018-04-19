@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon node ./bin/www",
-    "start": "node app.js"
+    "start": "node app.js",
+    "preinstall": "rm -rf /dist"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

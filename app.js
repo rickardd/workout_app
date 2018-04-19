@@ -27,19 +27,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-var options = {
-  dotfiles: 'ignore',
-  etag: false,
-  extensions: ['html'],
-  index: false,
-  maxAge: '1d',
-  redirect: false,
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now())
-  }
-}
+// var options = {
+//   dotfiles: 'ignore',
+//   etag: false,
+//   extensions: ['html'],
+//   index: false,
+//   maxAge: '1d',
+//   redirect: false,
+//   setHeaders: function (res, path, stat) {
+//     res.set('x-timestamp', Date.now())
+//   }
+// }
 
-app.use(express.static(path.join(__dirname, 'dist'), options));
+app.use(serveStatic(__dirname + '/dist')); // works
+// app.use(express.static(path.join(__dirname, 'dist'), options));
 app.use(cors());
 
 app.use('/', index);
