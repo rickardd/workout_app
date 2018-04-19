@@ -3,8 +3,8 @@ const mongo = require('mongodb');
 
 // Connection URL
 // const url = 'mongodb://127.0.0.1:27017';
-const url = 'mongodb://admin:admin@ds249249.mlab.com:49249/workout_app';
-
+// const url = 'mongodb://admin:admin@ds249249.mlab.com:49249/workout_app';
+var url = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017';
 // Database Name
 const dbName = 'workout_app';
 
