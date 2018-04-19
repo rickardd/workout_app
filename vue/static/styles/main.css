@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Abel|Oxygen|Quicksand|Titillium+Web|Work+Sans");
 /*
   The code below has been extracted from the following projects:
 
@@ -612,6 +613,9 @@ button::-moz-focus-inner {
 
 .top-bar__item {
   padding: 12px; }
+
+body {
+  font-family: 'Oxygen', sans-serif; }
 
 a:not(.default-link),
 button:not(.default-link) {

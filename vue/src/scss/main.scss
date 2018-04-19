@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Oxygen|Quicksand|Titillium+Web|Work+Sans');
 @import '_variables';
 // @import 'vendor/normalize';
 @import 'vendor/reset';
@@ -9,6 +10,26 @@
 @import 'components/_exercise';
 @import 'components/_timer';
 @import 'components/_top-bar';
+
+
+body{
+  font-family: 'Oxygen', sans-serif;
+  // &.titillium-web {
+  //   font-family: 'Titillium Web', sans-serif;
+  // }
+  // &.oxygen {
+  //   font-family: 'Oxygen', sans-serif;
+  // }
+  // &.work-sans {
+  //   font-family: 'Work Sans', sans-serif;
+  // }
+  // &.quicksand {
+  //   font-family: 'Quicksand', sans-serif;
+  // }
+  // &.abel {
+  //   font-family: 'Abel', sans-serif;
+  // }
+}
 
 a:not(.default-link),
 button:not(.default-link){
