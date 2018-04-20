@@ -25,8 +25,8 @@ router.get('/:id', function( req, res ) {
 router.post('/', function( req, res ) {
   const doc = { workout: req.body.workout };
   queries.createWorkout(doc, function( doc ) {
-    console.log(doc)
-    res.send( doc )
+    console.log('-- workout created :', doc.insertedIds[0])
+    res.send( doc.insertedIds[0] )
   });
 });
 

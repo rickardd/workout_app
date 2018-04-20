@@ -1,10 +1,10 @@
 <template>
   <div>
-
     <h1 class="title">Create Workout</h1>
     <form>
       <input
         type="text"
+        class="input"
         name="workout"
         autocomplete="off"
         placeholder="Workout name"
@@ -16,19 +16,12 @@
           Create workout
       </button>
     </form>
-    {{workout._id}}
-    <div v-if="!!workout._id">
-      <hr>
-      <h1>{{workout.workout}} created</h1>
-      <router-link :href="workoutUrl()">Go to workout</router-link>
-    </div>
-    <br>
-
   </div>
 </template>
 
 <script>
 import WorkoutService from '@/services/WorkoutService'
+import router from '../router'
 
 export default {
   name: 'WorkoutCreate',
@@ -44,11 +37,9 @@ export default {
   },
   methods: {
     async create () {
-      const response = await WorkoutService.createWorkout({
-        workout: this.workout.name
-      })
-      const workout = await WorkoutService.getWorkout(response.data.ops[0]._id)
-      this.workout = workout.data
+      const response = await WorkoutService.createWorkout({workout: this.workout.name})
+      // response = _id
+      router.push({ name: 'Workout', params: { workoutId: response.data }})
     },
     workoutUrl() {
       return `/workout/${this.workout._id}/`
