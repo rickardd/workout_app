@@ -157,10 +157,17 @@ module.exports.createExercises = function(workoutId, doc, callback) {
         }
       },
       {
-        // "upsert" : true
-        "returnNewDocument" : true
+        // "upsert" : true,
+        // "returnNewDocument" : true,
+        "returnOriginal" : false, // returns document after update
+
       },
       function(err, doc) {
+
+        console.clear('---RETURNED DOCUMENT------')
+        console.log("---RETURNED DOCUMENT------")
+        console.log(doc.value.exercises)
+
         if(err) throw err;
         callback(doc);
         client.close();

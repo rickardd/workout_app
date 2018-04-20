@@ -5,11 +5,11 @@
     <form>
       <input
         type="text"
-        name="exercises"
+        name="exercise"
         class='input'
         autocomplete="off"
-        placeholder="Exercises name"
-        v-model="exercises.name">
+        placeholder="Exercise name"
+        v-model="exercise.name">
 
       <input
         type="number"
@@ -17,7 +17,7 @@
         class='input'
         autocomplete="off"
         placeholder="Weight Goal (kg)"
-        v-model="exercises.weightGoal">
+        v-model="exercise.weightGoal">
 
       <input
         type="number"
@@ -25,7 +25,7 @@
         class='input'
         autocomplete="off"
         placeholder="Reps Goal"
-        v-model="exercises.repsGoal">
+        v-model="exercise.repsGoal">
 
       <input
         type="number"
@@ -33,7 +33,7 @@
         class='input'
         autocomplete="off"
         placeholder="Time Goal, e.g 60s"
-        v-model="exercises.timeGoal">
+        v-model="exercise.timeGoal">
 
       <input
         type="number"
@@ -41,7 +41,7 @@
         class='input'
         autocomplete="off"
         placeholder="Rep Time (e.g 5sec for each rep)"
-        v-model="exercises.repTime">
+        v-model="exercise.repTime">
 
       <input
         type="number"
@@ -49,7 +49,7 @@
         class='input'
         autocomplete="off"
         placeholder="Number of Sets (e.g 3 sets)"
-        v-model="exercises.numberOfSets">
+        v-model="exercise.numberOfSets">
 
       <input
         type="text"
@@ -57,7 +57,7 @@
         class='input'
         autocomplete="off"
         placeholder="comment"
-        v-model="exercises.comment">
+        v-model="exercise.comment">
 
       <input
         type="text"
@@ -65,16 +65,42 @@
         class='input'
         autocomplete="off"
         placeholder="image"
-        v-model="exercises.image">
-
+        v-model="exercise.image">
+      <br>
+      <br>
       <button
         type="button"
         @click="create">
-          Create exercises
+          Create exercise
       </button>
     </form>
-
-
+    <br>
+    <div v-if="lastAddedExercise.name" style="background: rgba(255, 255, 255, .1); padding: 12px; border: 1px solid #f3e8c6;">
+      <h2 class="h2">Added</h2>
+      <ul class="list">
+        <li class="list__item exercise">
+          <div class="h2 exercise__title">
+            <h2 >{{lastAddedExercise.numberOfSets}}x {{lastAddedExercise.name}}</h2>
+          </div>
+          <div class="exercise__ex-rep-time">
+             <span>rep interval:</span>
+             <strong>{{lastAddedExercise.repTime}}</strong>
+           </div>
+          <div class="exercise__ex-time-goal">
+             <span>Aim for:</span>
+             <strong>{{lastAddedExercise.timeGoal}}s</strong>
+           </div>
+          <div class="exercise__ex-weight-goal">
+             <span>Aim for:</span>
+             <strong>{{lastAddedExercise.weightGoal}}kg</strong>
+           </div>
+          <div class="exercise__ex-comment">
+              <span class="icon-comment"></span>
+              {{lastAddedExercise.comment}}
+          </div>
+        </li>
+      </ul>
+    </div>
 
     <ul class="list" v-if="workout.exercises">
       <li class="list__item exercise" v-for="exercises in workout.exercises">
@@ -99,32 +125,6 @@
         </div>
       </li>
     </ul>
-
-<!--
-    <hr>
-    <ul>
-      <li v-for="exercises in exercises">
-        <dl>
-          <dt style="display: inline;"><strong>name</strong></dt>
-            <dd style="display: inline;">{{exercises.name}}</dd><br>
-          <dt style="display: inline;"><strong>weightGoal</strong></dt>
-            <dd style="display: inline;">{{exercises.weightGoal}}</dd><br>
-          <dt style="display: inline;"><strong>repsGoal</strong></dt>
-            <dd style="display: inline;">{{exercises.repsGoal}}</dd><br>
-          <dt style="display: inline;"><strong>timeGoal</strong></dt>
-            <dd style="display: inline;">{{exercises.timeGoal}}</dd><br>
-          <dt style="display: inline;"><strong>repTime</strong></dt>
-            <dd style="display: inline;">{{exercises.repTime}}</dd><br>
-          <dt style="display: inline;"><strong>numberOfSets</strong></dt>
-            <dd style="display: inline;">{{exercises.numberOfSets}}</dd><br>
-          <dt style="display: inline;"><strong>comment</strong></dt>
-            <dd style="display: inline;">{{exercises.comment}}</dd><br>
-          <dt style="display: inline;"><strong>image</strong></dt>
-            <dd style="display: inline;">{{exercises.image}}</dd><br>
-        </dl>
-      </li>
-    </ul>
- -->
   </div>
 </template>
 
@@ -142,8 +142,7 @@ export default {
     return {
       workoutId: '',
       workout: {},
-      // exercises: [],
-      exercises: {
+      exercise: {
         name: '',
         weightGoal: '',
         repsGoal: '',
@@ -153,7 +152,7 @@ export default {
         comment: '',
         image: '',
       },
-      // exercises: {},
+      lastAddedExercise: {},
     }
   },
   mounted () {
@@ -164,15 +163,16 @@ export default {
     async getWorkout () {
       const response = await workoutService.getWorkout(this.workoutId)
       this.workout = response.data
-      console.log(this.workout)
     },
     async create () {
-      this.$route.params.username
       const response = await exerciseService.createExercises({
         workoutId: this.workoutId,
-        exercises: this.exercises,
+        exercises: this.exercise,
       })
-      this.exercises = response.data.value.exercises;
+      this.lastAddedExercise = this.exercise
+      this.exercise = {}
+      let sortedExercises = response.data.value.exercises.sort(function(a, b) { return a.name > b.name })
+      this.workout.exercises = sortedExercises;
     }
   }
 }

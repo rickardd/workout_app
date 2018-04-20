@@ -163,7 +163,7 @@ button::-moz-focus-inner {
   padding-bottom: 12px; }
 
 .input {
-  padding: 6px;
+  padding: 12px 6px;
   border: 1px solid #f3e8c6;
   background-color: rgba(255, 255, 255, 0.12);
   color: #f3e8c6;

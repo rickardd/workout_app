@@ -7,7 +7,6 @@ export default {
   getExercises (id) {
     return Api().get(`/exercises/${id}`)
   },
-
   createJournal (data) {
     return Api().post(`/journal/`, data)
   }

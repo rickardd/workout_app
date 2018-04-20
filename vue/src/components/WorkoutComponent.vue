@@ -2,13 +2,21 @@
   <article>
 
     <h1 class="title">Workout: {{ workout.workout }} </h1>
+    <div v-if="!workout.exercises">
+      This workout does not yet have any exercises. Please add on the button below.
+    </div>
+    <br>
 
     <router-link :to="createExercisesUrl()">
-      <span class="icon-plus"></span>
+      Exercise <span class="icon-plus"></span>
     </router-link>
-    <router-link :to="sessionUrl()">
-      <span class="icon-right"></span>
-    </router-link>
+
+    <div v-if="workout.exercises">
+      <router-link :to="sessionUrl()">
+        Start Workout <span class="icon-right"></span>
+      </router-link>
+    </div>
+
     <br>
     <br>
 
