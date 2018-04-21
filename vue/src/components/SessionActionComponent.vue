@@ -37,25 +37,30 @@
     <br>
 
     <form>
-      <input
-        type="number"
-        class='input'
-        name="reps"
-        autocomplete="off"
-        placeholder="reps"
-        min="0"
-        v-model.number="data.reps">
-      <input
-        type="number"
-        class='input'
-        name="weight"
-        autocomplete="off"
-        placeholder="weight"
-        min="0"
-        v-model.number="data.weight">
+      <div class="flex">
+        <div class="flex-2">
+          <input
+            type="number"
+            class='input w-100'
+            name="reps"
+            autocomplete="off"
+            placeholder="reps"
+            min="0"
+            v-model.number="data.reps">
+        </div>
+        <div class="flex-2">
+          <input
+            type="number"
+            class='input w-100'
+            name="weight"
+            autocomplete="off"
+            placeholder="weight"
+            min="0"
+            v-model.number="data.weight">
+        </div>
+      </div>
       <br>
-
-      <button type="button" @click="onCompleted">Done</button>
+      <button class="button button--big w-100" type="button" @click="onCompleted">Done</button>
     </form>
 
   </div>
@@ -87,6 +92,7 @@ export default {
     if (SETTINGS.playSound ) {
       eventBus.$emit('audio:play', 'beep')
     }
+    eventBus.$emit('screen:flash')
   },
   beforeDestroy () {
     clearInterval(this.timer)
@@ -107,6 +113,7 @@ export default {
         this.data.elapsedTime += 1;
         if (this.data.elapsedTime % 5 === 0 && SETTINGS.playSound ) {
           eventBus.$emit('audio:play', 'blop')
+          eventBus.$emit('screen:flash')
         }
       }, 1000)
 

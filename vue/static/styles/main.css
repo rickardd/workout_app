@@ -170,6 +170,23 @@ button::-moz-focus-inner {
   font-size: 0.8rem;
   margin-bottom: 5px; }
 
+.w-100 {
+  width: 100%; }
+
+.button.button--big {
+  padding: 12px;
+  font-size: 1.2rem; }
+
+.flex {
+  display: flex; }
+
+.flex-2 {
+  width: 50%; }
+  .flex-2:first-child {
+    padding-right: 6px; }
+  .flex-2:first-right {
+    padding-left: 6px; }
+
 .grid {
   background: #6f000f;
   color: #f3e8c6;
