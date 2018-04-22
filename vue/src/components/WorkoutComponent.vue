@@ -7,7 +7,7 @@
     </div>
     <br>
 
-    <router-link :to="createExercisesUrl()">
+    <router-link :to="createExercisesUrl()" :class="{'w-100 button button--big' : !workout.exercises}">
       Exercise <span class="icon-plus"></span>
     </router-link>
 

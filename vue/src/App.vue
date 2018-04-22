@@ -27,11 +27,6 @@
             </router-link>
           </li>
           <li class="main-nav__item">
-            <router-link to="/user/12345" class="default-link main-nav__icon">
-              <span class="icon-torso"></span>
-            </router-link>
-          </li>
-          <li class="main-nav__item">
             <router-link to="/users" class="default-link main-nav__icon">
               <span class="icon-group"></span>
             </router-link>

@@ -1,0 +1,16 @@
+$margin-list: 2 4 6 8 12 24 48;
+
+@each $margin in $margin-list {
+  .mt-#{$margin}{
+    margin-top: #{$margin}px;
+  }
+  .mb-#{$margin}{
+    margin-bottom: #{$margin}px;
+  }
+  .ml-#{$margin}{
+    margin-left: #{$margin}px;
+  }
+  .mr-#{$margin}{
+    margin-right: #{$margin}px;
+  }
+}

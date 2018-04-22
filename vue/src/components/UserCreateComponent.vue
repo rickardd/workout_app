@@ -5,6 +5,7 @@
     <form>
       <input
         type="text"
+        class="input w-100"
         name="name"
         autocomplete="off"
         placeholder="Name"
@@ -12,6 +13,7 @@
       <br>
       <input
         type="text"
+        class="input w-100"
         name="surname"
         autocomplete="off"
         placeholder="Surname"
@@ -20,6 +22,7 @@
 
       <button
         v-if="!id"
+        class="button button--big w-100"
         type="button"
         @click="add">
           Create user
@@ -33,11 +36,11 @@
       </button>
     </form>
 
-    <div v-if="newUser.name">
+    <!-- <div v-if="newUser.name">
       <hr>
       <h1>{{newUser.name}} ({{newUser.surname}})</h1>
       {{newUser._id}}
-    </div>
+    </div> -->
 
     <br>
 
@@ -47,6 +50,7 @@
 
 <script>
 import UserService from '@/services/UserService'
+import router from '../router'
 
 export default {
   name: 'NewUser',
@@ -66,15 +70,17 @@ export default {
         name: this.name,
         surname: this.surname
       })
-      const newUser = await UserService.getUser(response.data.ops[0]._id)
-      this.newUser = newUser.data
+      // const newUser = await UserService.getUser(response.data.ops[0]._id)
+      // this.newUser = newUser.data
+      console.log(response.data.ops[0]._id)
+      router.push({ name: 'User', params: { id: response.data.ops[0]._id }})
     },
     async update () {
       const response = await UserService.updateUser(this.id, {
         name: this.name,
         surname: this.surname
       })
-      this.newUser = response.data
+      // this.newUser = response.data
     }
   },
   async beforeMount () {

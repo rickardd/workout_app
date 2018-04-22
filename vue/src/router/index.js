@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CreateUserComponent from '@/components/CreateUserComponent'
+import UserCreateComponent from '@/components/UserCreateComponent'
 import UsersComponent from '@/components/UsersComponent'
 import UserComponent from '@/components/UserComponent'
 import HomeComponent from '@/components/HomeComponent'
@@ -23,7 +23,7 @@ export default new Router({
     {
       path: '/user/create',
       name: 'Register',
-      component: CreateUserComponent
+      component: UserCreateComponent
     },
     {
       path: '/users',
@@ -39,7 +39,7 @@ export default new Router({
     {
       path: '/user/update/:id',
       name: 'UpdateUser',
-      component: CreateUserComponent,
+      component: UserCreateComponent,
       props: true // When props is set to true, the route.params will be set as the component props.
     },
     {

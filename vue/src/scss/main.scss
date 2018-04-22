@@ -3,6 +3,7 @@
 // @import 'vendor/normalize';
 @import 'vendor/reset';
 @import 'helpers/_elements';
+@import 'helpers/_margins';
 @import 'layout/_grid';
 @import 'components/_icons';
 @import 'components/_main-nav';
@@ -38,5 +39,16 @@ button:not(.default-link){
   background: $secondary;
   color: $primary;
   text-decoration: none;
-}
+  text-align: center;
+  font-size: 1rem;
 
+  &.button--small{
+    padding: 4px;
+    font-size: 0.8rem;
+  }
+
+  &.button--big{
+    padding: 12px;
+    font-size: 1.2rem;
+  }
+}

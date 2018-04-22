@@ -4,7 +4,7 @@
     <form>
       <input
         type="text"
-        class="input"
+        class="input w-100"
         name="workout"
         autocomplete="off"
         placeholder="Workout name"
@@ -12,6 +12,7 @@
       <br>
       <button
         type="button"
+        class="button button--big w-100"
         @click="create">
           Create workout
       </button>
@@ -38,7 +39,6 @@ export default {
   methods: {
     async create () {
       const response = await WorkoutService.createWorkout({workout: this.workout.name})
-      // response = _id
       router.push({ name: 'Workout', params: { workoutId: response.data }})
     },
     workoutUrl() {

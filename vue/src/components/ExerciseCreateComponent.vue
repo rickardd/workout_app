@@ -70,6 +70,7 @@
       <br>
       <button
         type="button"
+        class="w-100 button button--big"
         @click="create">
           Create exercise
       </button>
