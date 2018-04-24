@@ -87,8 +87,13 @@ module.exports.deleteUser = function(id, callback) {
 
 // WORKOUT
 
-module.exports.createWorkout = function(doc, callback) {
-  console.log( doc );
+module.exports.createWorkout = function(doc, currentUserIdTemp, callback) {
+  console.log('--here--', doc );
+
+  // doc.userRef =  DBRef("users", ObjectId("5adc40011460df075d84b1e5"));
+  doc.userRef =  {"$ref" : "users", "$id" : currentUserIdTemp} // mongo detects and creates a DBRef... DBRef("users", "5adc40011460df075d84b1e5")
+  doc.userId = currentUserIdTemp
+
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
     const db = client.db(dbName);
@@ -124,6 +129,24 @@ module.exports.findWorkout = function(id, callback) {
     const collection = db.collection('workouts');
 
     collection.findOne({ _id: new mongo.ObjectId(id) }, (function(err, doc) {
+      if(err) throw err;
+      callback(doc);
+      client.close();
+    }));
+  });
+};
+
+
+module.exports.findWorkoutForUser = function(userId, callback) {
+
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts');
+
+    console.log('FIND WORKOUTS FOR USER', userId)
+
+    collection.find({ userId: userId }).toArray( (function(err, doc) {
       if(err) throw err;
       callback(doc);
       client.close();

@@ -10,6 +10,9 @@ export default {
   getUser (id) {
     return Api().get(`/user/${id}`)
   },
+  getUserWorkouts (id) {
+    return Api().get(`/user/${id}/workouts`)
+  },
   updateUser (id, credentials) {
     return Api().put(`/user/${id}`, credentials)
   },

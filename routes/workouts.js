@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var queries = require('../services/db');
 
-
-
 // GET /
 // All workouts
 router.get('/', function( req, res ) {
@@ -23,12 +21,16 @@ router.get('/:id', function( req, res ) {
 
 // POST /
 router.post('/', function( req, res ) {
+  // let workout = req.body.workout
+  // workout.userRef = DBRef("users", req.body.currentUserIdTemp)
+  // workout.userRef = DBRef("users", "5adc40011460df075d84b1e5")
+  // workout.userRef =  {"$ref" : "users", "$id" : "5adc40011460df075d84b1e5"} // mongo detects and creates a DBRef... DBRef("users", "5adc40011460df075d84b1e5")
   const doc = { workout: req.body.workout };
-  queries.createWorkout(doc, function( doc ) {
+  console.log('----REF----', doc )
+  queries.createWorkout(doc, req.body.currentUserIdTemp, function( doc ) {
     console.log('-- workout created :', doc.insertedIds[0])
     res.send( doc.insertedIds[0] )
   });
 });
-
 
 module.exports = router;

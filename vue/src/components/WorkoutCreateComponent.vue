@@ -38,8 +38,11 @@ export default {
   },
   methods: {
     async create () {
-      const response = await WorkoutService.createWorkout({workout: this.workout.name})
+      let currentUserIdTemp = localStorage.getItem('userId'); // logedin user id
+      const response = await WorkoutService.createWorkout({workout: this.workout.name, currentUserIdTemp: currentUserIdTemp})
       router.push({ name: 'Workout', params: { workoutId: response.data }})
+
+
     },
     workoutUrl() {
       return `/workout/${this.workout._id}/`

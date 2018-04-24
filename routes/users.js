@@ -17,6 +17,15 @@ router.get('/:id', function( req, res ) {
   });
 });
 
+// GET /:id/workouts
+router.get('/:id/workouts', function( req, res ) {
+  const id = req.params.id;
+  queries.findWorkoutForUser( id, function ( doc ) {
+    console.log('GOT DATA', doc)
+    res.send( doc )
+  });
+});
+
 // POST /
 router.post('/', function( req, res ) {
   const doc = { name: req.body.name, surname: req.body.surname };
