@@ -7,6 +7,8 @@ import HomeComponent from '@/components/HomeComponent'
 import WorkoutCreateComponent from '@/components/WorkoutCreateComponent'
 import WorkoutsComponent from '@/components/WorkoutsComponent'
 import WorkoutComponent from '@/components/WorkoutComponent'
+import JournalsComponent from '@/components/JournalsComponent'
+import JournalComponent from '@/components/JournalComponent'
 import SessionComponent from '@/components/SessionComponent'
 import ExerciseCreateComponent from '@/components/ExerciseCreateComponent'
 
@@ -66,6 +68,16 @@ export default new Router({
       path: '/workout/:workoutId/exercises/create',
       name: 'ExercisesCreate',
       component: ExerciseCreateComponent
+    },
+    {
+      path: '/workout/:workoutId/journals',
+      name: 'journals',
+      component: JournalsComponent
+    },
+    {
+      path: '/journal/:id',
+      name: 'journal',
+      component: JournalComponent
     },
   ]
 })

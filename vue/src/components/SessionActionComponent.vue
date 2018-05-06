@@ -76,6 +76,8 @@ export default {
   props: [
     "exercise",
     "workoutId",
+    "sessionId",
+    "exerciseId",
   ],
   data () {
     return {
@@ -98,14 +100,16 @@ export default {
     clearInterval(this.timer)
   },
   methods: {
-    async createJournal () {
+    async addExerciseToJournal () {
       this.data.workoutId = this.workoutId
-      const response = await ExerciseService.createJournal( this.data )
+      this.data.sessionId = this.sessionId
+      this.data.exerciseId = this.exerciseId
+      const response = await ExerciseService.addToJournal( this.data )
       this.workout = response.data
     },
     onCompleted () {
       this.$emit('actionCompleted')
-      this.createJournal();
+      this.addExerciseToJournal();
     },
     resetElapsedTime () {
       this.elapsedTime = 0

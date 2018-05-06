@@ -1,40 +1,48 @@
 <template>
   <div>
 
-    {{setCounter}} of
-    <span v-if="currentExercise.numberOfSets">
-      {{currentExercise.numberOfSets}}
-    </span>
-    <span v-else>
-      0
-    </span>
+    <div v-if="!!sessionId">
+      <span v-if="currentExercise.numberOfSets">
+        {{currentExercise.numberOfSets}}
+      </span>
+      <span v-else>
+        0
+      </span>
 
-    <div v-if="!workout">
-      <div class="icon-spin2"></div>
-      Loading...
+      <div v-if="!workout">
+        <div class="icon-spin2"></div>
+        Loading...
+      </div>
+
+      <div v-if="currentView == 'sessionCompleted'">
+        SESSION COMPLETED
+      </div>
+
+      <div v-if="workout">
+        <SessionActionComponent
+          v-if="currentView == 'sessionAction'"
+          :exercise="currentExercise"
+          :workoutId="workout._id"
+          :sessionId="sessionId"
+          :exerciseId="currentExercise._exerciseId"
+          @actionCompleted="onActionCompleted" />
+        <SessionBreakComponent
+          v-if="currentView == 'sessionBreak'"
+          :exercise="currentExercise"
+          @breakCompleted="onBreakCompleted" />
+      </div>
+    </div>
+    <div v-else >
+      Waiting for session to be created...
     </div>
 
-    <div v-if="currentView == 'sessionCompleted'">
-      SESSION COMPLETED
-    </div>
-
-    <div v-if="workout">
-      <SessionActionComponent
-        v-if="currentView == 'sessionAction'"
-        :exercise="currentExercise"
-        :workoutId="workout._id"
-        @actionCompleted="onActionCompleted" />
-      <SessionBreakComponent
-        v-if="currentView == 'sessionBreak'"
-        :exercise="currentExercise"
-        @breakCompleted="onBreakCompleted" />
-    </div>
 
   </div>
 </template>
 
 <script>
 import WorkoutService from '@/services/WorkoutService'
+import ExerciseService from '@/services/ExerciseService'
 import SessionActionComponent from './SessionActionComponent'
 import SessionBreakComponent from './SessionBreakComponent'
 import eventBus from '../helpers/EventBus'
@@ -57,17 +65,28 @@ export default {
       exercisesCounter: 0,
       setCounter: 0,
       currentView: 'sessionBreak',
+      sessionId: null,
     }
   },
   mounted () {
-    this.workoutId = this.workoutId = this.$route.params.workoutId
-    this.getWorkout()
+    this.workoutId = this.$route.params.workoutId
+    this.createJournal()
+    // this.getWorkout()
   },
   methods: {
     async getWorkout () {
       const response = await WorkoutService.getWorkout( this.workoutId )
       this.workout = response.data
       this.updateExercises()
+    },
+    async createJournal(){
+      const response = await ExerciseService.createJournal( this.workoutId )
+      this.sessionId = response.data.value.journals.slice(-1)[0]._journalId; // getting journal id from the last journal in array
+      this.getWorkout()
+    },
+    async closeSession(){
+      const response = await ExerciseService.closeJournal( this.sessionId )
+      console.log('vue close session')
     },
     updateExercises () {
       this.currentExercise = this.workout.exercises[ this.exercisesCounter ]
@@ -85,11 +104,13 @@ export default {
         this.setCounter += 1;
       }
 
+      // if last exercise completed
       if( this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets){
-          this.currentView = 'sessionCompleted'
           if (SETTINGS.playSound ) {
             eventBus.$emit('audio:play', 'lullaby')
           }
+          this.currentView = 'sessionCompleted' // move to closeSession() when working.
+          this.closeSession()
           return
       }
 

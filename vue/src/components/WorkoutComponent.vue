@@ -17,6 +17,12 @@
       </router-link>
     </div>
 
+    <div v-if="workout.journals">
+      <router-link :to="journalUrl()">
+        Journals <span class="icon-right"></span>
+      </router-link>
+    </div>
+
     <br>
     <br>
 
@@ -75,6 +81,9 @@ export default {
     },
     sessionUrl () {
       return `/workout/${this.workoutId}/session/`
+    },
+    journalUrl () {
+      return `/workout/${this.workoutId}/journals/`
     }
   }
 

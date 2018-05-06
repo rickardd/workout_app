@@ -88,11 +88,11 @@ module.exports.deleteUser = function(id, callback) {
 // WORKOUT
 
 module.exports.createWorkout = function(doc, currentUserIdTemp, callback) {
-  console.log('--here--', doc );
 
   // doc.userRef =  DBRef("users", ObjectId("5adc40011460df075d84b1e5"));
   doc.userRef =  {"$ref" : "users", "$id" : currentUserIdTemp} // mongo detects and creates a DBRef... DBRef("users", "5adc40011460df075d84b1e5")
   doc.userId = currentUserIdTemp
+  doc.journals = []
 
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
@@ -144,8 +144,6 @@ module.exports.findWorkoutForUser = function(userId, callback) {
     const db = client.db(dbName);
     const collection = db.collection('workouts');
 
-    console.log('FIND WORKOUTS FOR USER', userId)
-
     collection.find({ userId: userId }).toArray( (function(err, doc) {
       if(err) throw err;
       callback(doc);
@@ -153,7 +151,6 @@ module.exports.findWorkoutForUser = function(userId, callback) {
     }));
   });
 };
-
 
 // SETS
 
@@ -168,6 +165,7 @@ module.exports.createExercises = function(workoutId, doc, callback) {
       { $push:
         { "exercises":
           {
+            "_exerciseId": new mongo.ObjectId(),
             "name" : doc.name,
             "weightGoal" : doc.weightGoal,
             "repsGoal" : doc.repsGoal,
@@ -186,11 +184,6 @@ module.exports.createExercises = function(workoutId, doc, callback) {
 
       },
       function(err, doc) {
-
-        console.clear('---RETURNED DOCUMENT------')
-        console.log("---RETURNED DOCUMENT------")
-        console.log(doc.value.exercises)
-
         if(err) throw err;
         callback(doc);
         client.close();
@@ -213,33 +206,103 @@ module.exports.findExercises = function(id, callback) {
   });
 };
 
-
-// JOURNALS
-
-module.exports.createJournal = function(workoutId, doc, callback) {
+module.exports.addJournal = function(workoutId, doc, callback) {
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
     const db = client.db(dbName);
     const collection = db.collection('workouts')
 
-    collection.findOneAndUpdate(
-      { _id: new mongo.ObjectId(workoutId) },
-      { $push:
-        { "journals":
-          {
-            "weight" : doc.weight,
-            "reps" : doc.reps,
-            "elapseTime" : doc.elapsedTime,
+    collection.findAndModify(
+      { '_id' : mongo.ObjectId(workoutId) }, // query
+      [['_id','asc']], // sort
+      { // update object
+        $push: {
+          journals: {
+            _journalId: new mongo.ObjectId(),
+            StartDateTime: new Date(),
+            FinishDateTime: null,
+            exercises: []
           }
         }
       },
-      {},
-      function(err, doc) {
-        if(err) throw err;
-        callback(doc);
-        client.close();
+      {
+        upsert: true,
+        new: true
       }
-    );
+
+    ).then( (doc) => {
+      callback(doc)
+    })
+    .catch( (error) => {
+      console.log(error)
+    })
+
+  });
+};
+
+
+module.exports.addExerciseToJournal = function(workoutId, journalId, doc, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts')
+
+    collection.findAndModify(
+      { 'journals._journalId' : mongo.ObjectId(journalId) }, // query
+      [['_journalId','asc']], // sort
+      // update object
+      {
+        $push: {
+          'journals.$.exercises': {
+            _exerciseId: doc.exerciseId,
+            weight: doc.weight,
+            timeElapse: doc.elapsedTime,
+            reps: doc.reps
+          }
+        }
+      },
+      {
+        upsert: true,
+        new: true
+      }
+    ).then( (doc) => {
+      callback(doc)
+    })
+    .catch( (error) => {
+      console.log(error)
+    })
+
+  });
+};
+
+module.exports.closeJournal = function(journalId, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('workouts')
+
+    console.log('CLOSE DB', journalId)
+
+    collection.findAndModify(
+      { 'journals._journalId' : mongo.ObjectId(journalId) }, // query
+      [['_journalId','asc']], // sort
+      // update object
+      {
+        $set: {
+          'journals.$.FinishDateTime': new Date()
+        }
+      },
+      {
+        upsert: false,
+        new: true
+      }
+    ).then( (doc) => {
+      callback(doc)
+    })
+    .catch( (error) => {
+      console.log(error)
+    })
+
   });
 };
 

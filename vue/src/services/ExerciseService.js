@@ -7,7 +7,15 @@ export default {
   getExercises (id) {
     return Api().get(`/exercises/${id}`)
   },
-  createJournal (data) {
-    return Api().post(`/journal/`, data)
+  createJournal (workoutId) {
+
+    return Api().post(`/journal/`, {workoutId: workoutId})
+  },
+  addToJournal (data) {
+    return Api().post(`/journal/exercise`, data)
+  },
+  closeJournal(journalId){
+    console.log(journalId)
+    return Api().put(`/journal/close`, {journalId: journalId})
   }
 }
