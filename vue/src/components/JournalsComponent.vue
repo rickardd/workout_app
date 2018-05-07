@@ -6,41 +6,31 @@
       Whoops! You havent done anything yet. Lazy?
     </div>
 
-    <br>
+    Total Sets: {{getTotalNumberOfSets()}}
     <br>
 
     <ul class="list">
-      <li class="list__item exercise" v-for="journal in workout.journals">
+      <li class="list__item exercise" v-for="exercise in workout.exercises">
+        <div class="h2 exercise__title">
+          <h2 >{{exercise.numberOfSets}}x {{exercise.name}}</h2>
+        </div>
+      </li>
+    </ul>
 
-        FinishDateTime : {{journal.FinishDateTime}}
+    <ul class="list">
+      <li class="list__item " v-for="journal in workout.journals">
+        COMPLETED: {{sessionSince( journal.StartDateTime )}}
         <br>
-        StartDateTime : {{journal.StartDateTime}}
-
+        {{workout.exercises.length}} Exercises
         <br>
-
-        SINCE: {{sessionSince( journal.StartDateTime )}}
-
-        <ul class="list">
-          <li v-for="exercise in journal.exercises" class="list__item exercise">
-            <div class="exercise__ex-rep-time">
-               <span>Weight:</span>
-               <strong>{{exercise.weight}}</strong>
-            </div>
-            <div class="exercise__ex-rep-time">
-               <span>Time Elapse:</span>
-               <strong>{{exercise.elapseTime}}</strong>
-            </div>
-            <div class="exercise__ex-time-goal">
-               <span>Reps:</span>
-               <strong>{{exercise.reps}}s</strong>
-            </div>
-
-            <router-link :to="journalUrl(journal._journalId)">
-              GoTo Journal <span class="icon-right"></span>
-            </router-link>
-
-          </li>
-        </ul>
+        Completed Sets: {{ journal.exercises.length }}
+        <br>
+        <br>
+        <router-link :to="journalUrl(journal._journalId)">
+          Journal <span class="icon-right"></span>
+        </router-link>
+        <br>
+        <br>
       </li>
     </ul>
 
@@ -77,9 +67,17 @@ export default {
     },
     sessionSince( date ){
       return moment(date).fromNow();
-    }
+    },
+    getTotalNumberOfSets(){
+      let sum = _.sumBy(this.workout.exercises, (exercise) => {
+        return parseInt(exercise.numberOfSets, 10)
+      })
+      return sum
+    },
+    getJournalById( journalId ){
+      return _.find(this.workout.journals, {_journalId: journalId })
+    },
   }
-
 }
 </script>
 
