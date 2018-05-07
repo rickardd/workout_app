@@ -11,18 +11,36 @@
 
     <ul class="list">
       <li class="list__item exercise" v-for="journal in workout.journals">
-        <div class="exercise__ex-rep-time">
-           <span>Weight:</span>
-           <strong>{{journal.weight}}</strong>
-        </div>
-        <div class="exercise__ex-rep-time">
-           <span>Time Elapse:</span>
-           <strong>{{journal.elapseTime}}</strong>
-        </div>
-        <div class="exercise__ex-time-goal">
-           <span>Reps:</span>
-           <strong>{{journal.reps}}s</strong>
-        </div>
+
+        FinishDateTime : {{journal.FinishDateTime}}
+        <br>
+        StartDateTime : {{journal.StartDateTime}}
+
+        <br>
+
+        SINCE: {{sessionSince( journal.StartDateTime )}}
+
+        <ul class="list">
+          <li v-for="exercise in journal.exercises" class="list__item exercise">
+            <div class="exercise__ex-rep-time">
+               <span>Weight:</span>
+               <strong>{{exercise.weight}}</strong>
+            </div>
+            <div class="exercise__ex-rep-time">
+               <span>Time Elapse:</span>
+               <strong>{{exercise.elapseTime}}</strong>
+            </div>
+            <div class="exercise__ex-time-goal">
+               <span>Reps:</span>
+               <strong>{{exercise.reps}}s</strong>
+            </div>
+
+            <router-link :to="journalUrl(journal._journalId)">
+              GoTo Journal <span class="icon-right"></span>
+            </router-link>
+
+          </li>
+        </ul>
       </li>
     </ul>
 
@@ -31,6 +49,7 @@
 
 <script>
 import WorkoutService from '@/services/WorkoutService'
+import moment from 'moment'
 
 export default {
   name: 'Journal',
@@ -53,12 +72,12 @@ export default {
       this.workout = response.data
       console.log(this.workout)
     },
-    // createExercisesUrl () {
-    //   return `/workout/${this.workoutId}/exercises/create/`
-    // },
-    // sessionUrl () {
-    //   return `/workout/${this.workoutId}/session/`
-    // }
+    journalUrl( journalId ) {
+      return `/workout/${this.workoutId}/journal/${journalId}`
+    },
+    sessionSince( date ){
+      return moment(date).fromNow();
+    }
   }
 
 }

@@ -75,7 +75,7 @@ export default new Router({
       component: JournalsComponent
     },
     {
-      path: '/journal/:id',
+      path: '/workout/:workoutId/journal/:journalId',
       name: 'journal',
       component: JournalComponent
     },
