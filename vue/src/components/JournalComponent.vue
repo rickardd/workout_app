@@ -10,25 +10,28 @@
 
       <h2 class="h2">Duration: {{getSessionDuration()}}</h2>
 
+
+
       <ul class="list" v-if="journal.exercises">
         <li class="list__item exercise" v-for="exercise in journal.exercises">
           <div class="exercise__ex-rep-time">
-             <span>Weight: </span>
+             <span><span class="fi flaticon-gym-6"></span> Weight: </span>
              <strong>{{ ( exercise.weight != "" && exercise.weight >= 0) ? exercise.weight : '-'}}</strong>
           </div>
           <div class="exercise__ex-rep-time">
-             <span>Time Elapse:</span>
+             <span><span class="fi flaticon-square"></span> Time Elapse:</span>
              <strong>{{ (exercise.timeElapse >= 0) ? exercise.timeElapse : '-'}}</strong>
           </div>
           <div class="exercise__ex-time-goal">
-             <span>Reps:</span>
+             <span><span class="fi flaticon-shapes-3"></span> Reps:</span>
              <strong>{{exercise.reps}}s</strong>
           </div>
 
-
           <ul class="list">
             <li v-for="(value, key) in getExerciseById( exercise._exerciseId )" class="list__item">
-                ({{key}} - {{value}})
+                <div v-if="key != '_exerciseId'">
+                  {{key}} - {{value}}
+                </div>
             </li>
           </ul>
 

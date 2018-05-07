@@ -170,6 +170,103 @@ button::-moz-focus-inner {
   font-size: 0.8rem;
   margin-bottom: 5px; }
 
+.w-100 {
+  width: 100%; }
+
+.flex {
+  display: flex; }
+
+.flex-2 {
+  width: 50%; }
+  .flex-2:first-child {
+    padding-right: 6px; }
+  .flex-2:first-right {
+    padding-left: 6px; }
+
+.mt-2 {
+  margin-top: 2px; }
+
+.mb-2 {
+  margin-bottom: 2px; }
+
+.ml-2 {
+  margin-left: 2px; }
+
+.mr-2 {
+  margin-right: 2px; }
+
+.mt-4 {
+  margin-top: 4px; }
+
+.mb-4 {
+  margin-bottom: 4px; }
+
+.ml-4 {
+  margin-left: 4px; }
+
+.mr-4 {
+  margin-right: 4px; }
+
+.mt-6 {
+  margin-top: 6px; }
+
+.mb-6 {
+  margin-bottom: 6px; }
+
+.ml-6 {
+  margin-left: 6px; }
+
+.mr-6 {
+  margin-right: 6px; }
+
+.mt-8 {
+  margin-top: 8px; }
+
+.mb-8 {
+  margin-bottom: 8px; }
+
+.ml-8 {
+  margin-left: 8px; }
+
+.mr-8 {
+  margin-right: 8px; }
+
+.mt-12 {
+  margin-top: 12px; }
+
+.mb-12 {
+  margin-bottom: 12px; }
+
+.ml-12 {
+  margin-left: 12px; }
+
+.mr-12 {
+  margin-right: 12px; }
+
+.mt-24 {
+  margin-top: 24px; }
+
+.mb-24 {
+  margin-bottom: 24px; }
+
+.ml-24 {
+  margin-left: 24px; }
+
+.mr-24 {
+  margin-right: 24px; }
+
+.mt-48 {
+  margin-top: 48px; }
+
+.mb-48 {
+  margin-bottom: 48px; }
+
+.ml-48 {
+  margin-left: 48px; }
+
+.mr-48 {
+  margin-right: 48px; }
+
 .grid {
   background: #6f000f;
   color: #f3e8c6;
@@ -539,6 +636,174 @@ button::-moz-focus-inner {
   content: '\f1da'; }
 
 /* '' */
+/*
+    Flaticon icon font: Flaticon
+    Creation date: 07/05/2018 22:01
+    */
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"), url("./Flaticon.woff") format("woff"), url("./Flaticon.ttf") format("truetype"), url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg"); } }
+
+.fi:before {
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
+
+.flaticon-gym-10:before {
+  content: "\f100"; }
+
+.flaticon-people-4:before {
+  content: "\f101"; }
+
+.flaticon-gym-9:before {
+  content: "\f102"; }
+
+.flaticon-gym-8:before {
+  content: "\f103"; }
+
+.flaticon-people-3:before {
+  content: "\f104"; }
+
+.flaticon-gym-7:before {
+  content: "\f105"; }
+
+.flaticon-gym-6:before {
+  content: "\f106"; }
+
+.flaticon-people-2:before {
+  content: "\f107"; }
+
+.flaticon-transport:before {
+  content: "\f108"; }
+
+.flaticon-gym-5:before {
+  content: "\f109"; }
+
+.flaticon-people-1:before {
+  content: "\f10a"; }
+
+.flaticon-gym-4:before {
+  content: "\f10b"; }
+
+.flaticon-people:before {
+  content: "\f10c"; }
+
+.flaticon-weight:before {
+  content: "\f10d"; }
+
+.flaticon-exercise-1:before {
+  content: "\f10e"; }
+
+.flaticon-barbell:before {
+  content: "\f10f"; }
+
+.flaticon-rings:before {
+  content: "\f110"; }
+
+.flaticon-strong:before {
+  content: "\f111"; }
+
+.flaticon-stationary-bike:before {
+  content: "\f112"; }
+
+.flaticon-healthy-lifestyle-logo:before {
+  content: "\f113"; }
+
+.flaticon-exercise:before {
+  content: "\f114"; }
+
+.flaticon-weightlifting:before {
+  content: "\f115"; }
+
+.flaticon-stretching-exercises:before {
+  content: "\f116"; }
+
+.flaticon-gym-3:before {
+  content: "\f117"; }
+
+.flaticon-gym-2:before {
+  content: "\f118"; }
+
+.flaticon-tool-1:before {
+  content: "\f119"; }
+
+.flaticon-gym-1:before {
+  content: "\f11a"; }
+
+.flaticon-gym:before {
+  content: "\f11b"; }
+
+.flaticon-tool:before {
+  content: "\f11c"; }
+
+.flaticon-sport:before {
+  content: "\f11d"; }
+
+.flaticon-arrows-3:before {
+  content: "\f11e"; }
+
+.flaticon-arrows-2:before {
+  content: "\f11f"; }
+
+.flaticon-folder-3:before {
+  content: "\f120"; }
+
+.flaticon-folder-2:before {
+  content: "\f121"; }
+
+.flaticon-shapes-3:before {
+  content: "\f122"; }
+
+.flaticon-shapes-2:before {
+  content: "\f123"; }
+
+.flaticon-folder-1:before {
+  content: "\f124"; }
+
+.flaticon-folder:before {
+  content: "\f125"; }
+
+.flaticon-time-1:before {
+  content: "\f126"; }
+
+.flaticon-time:before {
+  content: "\f127"; }
+
+.flaticon-arrows-1:before {
+  content: "\f128"; }
+
+.flaticon-arrows:before {
+  content: "\f129"; }
+
+.flaticon-square-1:before {
+  content: "\f12a"; }
+
+.flaticon-square:before {
+  content: "\f12b"; }
+
+.flaticon-shapes-1:before {
+  content: "\f12c"; }
+
+.flaticon-shapes:before {
+  content: "\f12d"; }
+
 @keyframes main-menu-tap {
   0% {
     background: rgba(0, 0, 0, 0.1); }
@@ -630,6 +895,16 @@ button:not(.default-link) {
   padding: 6px;
   background: #f3e8c6;
   color: #6f000f;
-  text-decoration: none; }
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem; }
+  a:not(.default-link).button--small,
+  button:not(.default-link).button--small {
+    padding: 4px;
+    font-size: 0.8rem; }
+  a:not(.default-link).button--big,
+  button:not(.default-link).button--big {
+    padding: 12px;
+    font-size: 1.2rem; }
 
 /*# sourceMappingURL=main.css.map */
