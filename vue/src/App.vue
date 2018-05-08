@@ -6,7 +6,7 @@
       <div class="grid__item grid__item--top-bar">
         <ul class="top-bar">
           <li class="top-bar__item icon-left-open" @click="onBrowsBack"></li>
-          <li class="top-bar__item icon-volume"></li>
+          <li :class="{'top-bar__item' : true, 'icon-volume' : playSound, 'icon-volume-off' : !playSound}" @click="onSoundClick"></li>
           <li class="top-bar__item" v-if="user">{{user.name}}</li>
           <li class="top-bar__item icon-cog"></li>
           <li class="top-bar__item icon-right-open" @click="onBrowsForward"></li>
@@ -45,6 +45,7 @@ import AudioComponent from '@/components/AudioComponent'
 import eventBus from './helpers/EventBus'
 import UserService from '@/services/UserService'
 import router from '@/router'
+import SETTINGS from '@/settings/settings'
 
 export default {
   name: 'App',
@@ -55,6 +56,7 @@ export default {
     return {
       flashScreen: false,
       user: null,
+      playSound: SETTINGS.playSound
     }
   },
   mounted(){
@@ -82,7 +84,13 @@ export default {
     },
     onBrowsForward(){
       router.go(1)
-    }
+    },
+    onSoundClick(){
+      SETTINGS.playSound = !SETTINGS.playSound
+      this.playSound = SETTINGS.playSound
+      console.log(this.playSound)
+    },
+
   }
 }
 </script>

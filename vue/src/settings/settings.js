@@ -4,3 +4,7 @@ const SETTINGS = {
 
 export default SETTINGS;
 
+// export function setSound ( value ) {
+//   SETTINGS.playSound = !!value
+// }
+

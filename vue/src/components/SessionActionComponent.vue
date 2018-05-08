@@ -115,9 +115,11 @@ export default {
       this.elapsedTime = 0
       this.timer = setInterval( () => {
         this.data.elapsedTime += 1;
-        if (this.data.elapsedTime % 5 === 0 && SETTINGS.playSound ) {
-          eventBus.$emit('audio:play', 'blop')
+        if (this.data.elapsedTime % 5 === 0 ) {
           eventBus.$emit('screen:flash')
+          if (SETTINGS.playSound) {
+            eventBus.$emit('audio:play', 'blop')
+          }
         }
       }, 1000)
 
