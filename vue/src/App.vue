@@ -5,11 +5,11 @@
     <main class="grid">
       <div class="grid__item grid__item--top-bar">
         <ul class="top-bar">
-          <li class="top-bar__item icon-left-open"></li>
+          <li class="top-bar__item icon-left-open" @click="onBrowsBack"></li>
           <li class="top-bar__item icon-volume"></li>
           <li class="top-bar__item" v-if="user">{{user.name}}</li>
           <li class="top-bar__item icon-cog"></li>
-          <li class="top-bar__item icon-right-open"></li>
+          <li class="top-bar__item icon-right-open" @click="onBrowsForward"></li>
         </ul>
       </div>
       <div class="grid__item grid__item--main">
@@ -44,6 +44,7 @@
 import AudioComponent from '@/components/AudioComponent'
 import eventBus from './helpers/EventBus'
 import UserService from '@/services/UserService'
+import router from '@/router'
 
 export default {
   name: 'App',
@@ -81,6 +82,12 @@ export default {
       let t = setTimeout( () => {
         this.flashScreen = false;
       }, 300)
+    },
+    onBrowsBack(){
+      router.go(-1)
+    },
+    onBrowsForward(){
+      router.go(1)
     }
   }
 }
