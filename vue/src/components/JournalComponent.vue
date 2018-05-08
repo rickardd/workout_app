@@ -89,7 +89,6 @@ export default {
   mounted () {
     this.workoutId = this.$route.params.workoutId
     this.journalId = this.$route.params.journalId
-
     this.getWorkout()
   },
   methods: {
@@ -110,7 +109,7 @@ export default {
 
       const end = moment(this.journal.FinishDateTime)
       const start = moment(this.journal.StartDateTime)
-      const duration = start.diff(end)
+      const duration = end.diff(start)
       return moment(duration).format("m[m] s[s]")
     }
   }
