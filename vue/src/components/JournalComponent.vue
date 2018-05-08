@@ -10,33 +10,60 @@
 
       <h2 class="h2">Duration: {{getSessionDuration()}}</h2>
 
+      <div v-if="journal.exercises">
+        <div v-for="(exercise, index) in journal.exercises">
 
+          <!-- IF exercise id is not equal to last exercise id... get exercise data. -->
+          <div v-if="!((!!journal.exercises[index - 1]) && journal.exercises[index - 1]._exerciseId ===  exercise._exerciseId)">
 
-      <ul class="list" v-if="journal.exercises">
-        <li class="list__item exercise" v-for="exercise in journal.exercises">
-          <div class="exercise__ex-rep-time">
-             <span><span class="fi flaticon-gym-6"></span> Weight: </span>
-             <strong>{{ ( exercise.weight != "" && exercise.weight >= 0) ? exercise.weight : '-'}}</strong>
-          </div>
-          <div class="exercise__ex-rep-time">
-             <span><span class="fi flaticon-square"></span> Time Elapse:</span>
-             <strong>{{ (exercise.timeElapse >= 0) ? exercise.timeElapse : '-'}}</strong>
-          </div>
-          <div class="exercise__ex-time-goal">
-             <span><span class="fi flaticon-shapes-3"></span> Reps:</span>
-             <strong>{{exercise.reps}}s</strong>
+            <ul class="list journal-exercise">
+              <li v-for="(value, key) in getExerciseById( exercise._exerciseId )" class="list__item">
+                <div v-if="key === 'name'">
+                  <h2 class="h2">{{value}}</h2>
+                </div>
+                <div v-if="key === 'weightGoal'">
+                  <span class="fi flaticon-gym-6"></span>Weight Aim: {{value}}kg
+                </div>
+                <div v-if="key === 'repsGoal'">
+                  <span class="fi flaticon-square"></span>Number of Reps Aim: {{value}}
+                </div>
+                <div v-if="key === 'repTime'">
+                  Rep Time {{value}}
+                </div>
+                <div v-if="key === 'timeGoal'">
+                  <span class="fi flaticon-shapes-3"></span>Time Aim:  {{value}}
+                </div>
+                <div v-if="key === 'numberOfSets'">
+                  Numer of Sets Aim: {{value}}
+                </div>
+                <div v-if="key === 'comment'">
+                  Comment: {{value}}
+                </div>
+              </li>
+            </ul>
+
           </div>
 
           <ul class="list">
-            <li v-for="(value, key) in getExerciseById( exercise._exerciseId )" class="list__item">
-                <div v-if="key != '_exerciseId'">
-                  {{key}} - {{value}}
-                </div>
+            <li class="list__item exercise" >
+              <div class="exercise__ex-rep-time">
+                 <span><span class="fi flaticon-gym-6"></span>Weight: </span>
+                 <strong>{{ ( exercise.weight != "" && exercise.weight >= 0) ? exercise.weight : '-'}}kg</strong>
+              </div>
+              <div class="exercise__ex-rep-time">
+                 <span><span class="fi flaticon-square"></span>ET set:</span>
+                 <strong>{{ (exercise.timeElapse >= 0) ? exercise.timeElapse : '-'}}s</strong>
+              </div>
+              <div class="exercise__ex-time-goal">
+                 <span><span class="fi flaticon-shapes-3"></span>Reps:</span>
+                 <strong>{{exercise.reps}}</strong>
+              </div>
             </li>
           </ul>
+        </div>
+      </div>
 
-        </li>
-      </ul>
+
     </div>
 
   </article>
@@ -93,6 +120,22 @@ export default {
 
 <style scoped>
 
+.journal-exercise{
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+.journal-exercise li{
+  border-bottom: 0;
+  padding: 4px;
+}
+
+.fi::before{
+  font-size: 24px;
+  vertical-align: baseline;
+  margin-right: 10px;
+}
 
 
 </style>
