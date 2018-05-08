@@ -57,23 +57,17 @@ export default {
       user: null,
     }
   },
-  beforeMount(){
-
-
-  },
   mounted(){
     eventBus.$on('screen:flash', this.onScreenFlash )
     eventBus.$on('localStorage:update:user', user => {
-      console.log(user)
       this.user = user
     })
 
     const userId =  window.localStorage.userId
+    console.log(!this.user && !!userId)
     if ( !this.user && !!userId) {
-      UserService.getUser( userId ).then( res => this.userName = res.data.name )
+      UserService.getUser( userId ).then( res => this.user = res.data)
     }
-
-
   },
   methods:{
     onScreenFlash(){
