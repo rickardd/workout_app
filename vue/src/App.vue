@@ -7,6 +7,7 @@
         <ul class="top-bar">
           <li class="top-bar__item icon-left-open"></li>
           <li class="top-bar__item icon-volume"></li>
+          <li class="top-bar__item" v-if="user">{{user.name}}</li>
           <li class="top-bar__item icon-cog"></li>
           <li class="top-bar__item icon-right-open"></li>
         </ul>
@@ -42,6 +43,7 @@
 
 import AudioComponent from '@/components/AudioComponent'
 import eventBus from './helpers/EventBus'
+import UserService from '@/services/UserService'
 
 export default {
   name: 'App',
@@ -51,10 +53,26 @@ export default {
   data(){
     return {
       flashScreen: false,
+      user: null,
     }
+  },
+  beforeMount(){
+
+
   },
   mounted(){
     eventBus.$on('screen:flash', this.onScreenFlash )
+    eventBus.$on('localStorage:update:user', user => {
+      console.log(user)
+      this.user = user
+    })
+
+    const userId =  window.localStorage.userId
+    if ( !this.user && !!userId) {
+      UserService.getUser( userId ).then( res => this.userName = res.data.name )
+    }
+
+
   },
   methods:{
     onScreenFlash(){

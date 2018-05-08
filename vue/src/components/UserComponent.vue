@@ -34,6 +34,7 @@
 <script>
 
 import UserService from '@/services/UserService'
+import eventBus from '@/helpers/EventBus'
 
 export default {
   name: 'Users',
@@ -47,16 +48,15 @@ export default {
     }
   },
   methods: {
-
     workoutUrl( id ){
       return `/workout/${id}`
     }
-
   },
   async beforeMount () {
     localStorage.setItem('userId', this.id);
     const response = await UserService.getUser(this.id)
     this.user = response.data
+    eventBus.$emit('localStorage:update:user', this.user )
     const workouts = await UserService.getUserWorkouts(this.id)
     this.workouts = workouts.data
   }
