@@ -1,2 +1,0 @@
-@keyframes flash{0%{z-index:100;opacity:0}50%{opacity:1}to{opacity:0;z-index:-1}}.flash-screen{background-color:#ffbc00;position:fixed;top:0;bottom:0;right:0;left:0;z-index:-1}.flash-screen--in{opacity:1;animation:flash .3s ease-in;animation-fill-mode:forwards}.input[data-v-4445e2b5]{width:48%}
-/*# sourceMappingURL=app.31f931d40efffcaa30ead07b4d78c4a9.css.map */
