@@ -3,10 +3,7 @@
 
     <div v-if="!!sessionId">
       <span v-if="currentExercise.numberOfSets">
-        {{currentExercise.numberOfSets}}
-      </span>
-      <span v-else>
-        0
+        Set {{setCounter + 1}}/{{currentExercise.numberOfSets}}
       </span>
 
       <div v-if="!workout">
@@ -20,7 +17,7 @@
 
       <div v-if="workout">
         <SessionActionComponent
-          v-if="currentView == 'sessionAction'"
+          v-if="currentView == 'sessionAction' && !!Object.keys( currentExercise ).length "
           :exercise="currentExercise"
           :workoutId="workout._id"
           :sessionId="sessionId"
@@ -64,7 +61,7 @@ export default {
       workout: {},
       currentExercise: {},
       exercisesCounter: 0,
-      setCounter: 0,
+      setCounter: 1,
       currentView: 'sessionBreak',
       sessionId: null,
     }
@@ -72,7 +69,6 @@ export default {
   mounted () {
     this.workoutId = this.$route.params.workoutId
     this.createJournal()
-    // this.getWorkout()
   },
   methods: {
     async getWorkout () {
@@ -104,9 +100,8 @@ export default {
       return this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets
     },
     onActionCompleted ( e ) {
-
       if ( this.isLastSetInExercise() ) {
-        this.setCounter = 0;
+        this.setCounter = 0
         this.updateExercises()
       }
       else{
