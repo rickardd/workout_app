@@ -27,15 +27,16 @@
           :exerciseId="currentExercise._exerciseId"
           @actionCompleted="onActionCompleted" />
         <SessionBreakComponent
-          v-if="currentView == 'sessionBreak'"
+          v-if="currentView == 'sessionBreak' && !!Object.keys( currentExercise ).length"
           :exercise="currentExercise"
+          :isLastSetInExercise="isLastSetInExercise()"
+          :isFirstSetInExercise="isFirstSetInExercise()"
           @breakCompleted="onBreakCompleted" />
       </div>
     </div>
     <div v-else >
       Waiting for session to be created...
     </div>
-
 
   </div>
 </template>
@@ -86,17 +87,25 @@ export default {
     },
     async closeSession(){
       const response = await ExerciseService.closeJournal( this.sessionId )
-      console.log('vue close session')
     },
     updateExercises () {
       this.currentExercise = this.workout.exercises[ this.exercisesCounter ]
       this.exercisesCounter += 1
     },
-    onActionCompleted ( e ) {
+    isLastSetInExercise(){
+      return this.setCounter >= this.currentExercise.numberOfSets
+    },
+    isFirstSetInExercise(){
+      return this.setCounter === 0
+    },
+    isLastExerciseCompleted(){
       const exercises = this.workout.exercises;
       const lastExercises = exercises[exercises.length -1]
+      return this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets
+    },
+    onActionCompleted ( e ) {
 
-      if ( this.setCounter >= this.currentExercise.numberOfSets ) {
+      if ( this.isLastSetInExercise() ) {
         this.setCounter = 0;
         this.updateExercises()
       }
@@ -104,8 +113,7 @@ export default {
         this.setCounter += 1;
       }
 
-      // if last exercise completed
-      if( this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets){
+      if( this.isLastExerciseCompleted() ){
           if (SETTINGS.playSound ) {
             eventBus.$emit('audio:play', 'lullaby')
           }

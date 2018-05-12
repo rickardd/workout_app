@@ -15,7 +15,6 @@ export default {
     return Api().post(`/journal/exercise`, data)
   },
   closeJournal(journalId){
-    console.log(journalId)
     return Api().put(`/journal/close`, {journalId: journalId})
   }
 }

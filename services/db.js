@@ -173,6 +173,8 @@ module.exports.createExercises = function(workoutId, doc, callback) {
             "repTime" : doc.repTime,
             "numberOfSets" : doc.numberOfSets,
             "comment" : doc.comment,
+            "breakTimeBetweenSets" : doc.breakTimeBetweenSets,
+            "breakTimeAfterExercise" : doc.breakTimeAfterExercise,
             "image" : doc.image,
           }
         }

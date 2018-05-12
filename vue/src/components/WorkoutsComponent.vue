@@ -48,8 +48,6 @@ export default {
     async getWorkouts () {
       const response = await WorkoutService.getWorkouts()
       this.workouts = response.data
-
-      console.log(this.workouts);
     },
     workoutUrl( id ){
       return `/workout/${id}`

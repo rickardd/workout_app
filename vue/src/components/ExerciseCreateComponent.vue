@@ -60,6 +60,22 @@
         v-model="exercise.comment">
 
       <input
+        type="number"
+        name="breakTimeBetweenSets"
+        class='input'
+        autocomplete="off"
+        placeholder="breakTimeBetweenSets"
+        v-model="exercise.breakTimeBetweenSets">
+
+      <input
+        type="number"
+        name="breakTimeAfterExercise"
+        class='input'
+        autocomplete="off"
+        placeholder="breakTimeAfterExercise"
+        v-model="exercise.breakTimeAfterExercise">
+
+      <input
         type="text"
         name="image"
         class='input'

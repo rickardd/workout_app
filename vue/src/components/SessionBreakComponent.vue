@@ -65,16 +65,16 @@
 </template>
 
 <script>
-import WorkoutService from '@/services/WorkoutService'
 
 export default {
   name: 'Workout',
   props: [
-    "exercise"
+    "exercise",
+    "isLastSetInExercise",
+    "isFirstSetInExercise",
   ],
   data () {
     return {
-      workout: {},
       timer: null,
       breakElapseTime: 0,
     }
@@ -89,8 +89,11 @@ export default {
     clearInterval(this.timer)
   },
   methods: {
+    getBreakTime(){
+      return this.isLastSetInExercise ? this.exercise.breakTimeAfterExercise : this.exercise.breakTimeBetweenSets
+    },
     restartBreakElapseTime () {
-      this.breakElapseTime = 5
+      this.breakElapseTime = this.getBreakTime()
       return new Promise( (resolve, reject) => {
         this.timer = setInterval( () => {
           this.breakElapseTime -= 1;

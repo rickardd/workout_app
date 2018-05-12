@@ -66,14 +66,12 @@ export default {
     })
 
     const userId =  window.localStorage.userId
-    console.log(!this.user && !!userId)
     if ( !this.user && !!userId) {
       UserService.getUser( userId ).then( res => this.user = res.data)
     }
   },
   methods:{
     onScreenFlash(){
-      console.log('screen flash')
       this.flashScreen = true;
       let t = setTimeout( () => {
         this.flashScreen = false;
@@ -88,7 +86,6 @@ export default {
     onSoundClick(){
       SETTINGS.playSound = !SETTINGS.playSound
       this.playSound = SETTINGS.playSound
-      console.log(this.playSound)
     },
 
   }

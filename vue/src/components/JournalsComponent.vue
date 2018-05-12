@@ -60,7 +60,6 @@ export default {
     async getWorkout () {
       const response = await WorkoutService.getWorkout(this.workoutId)
       this.workout = response.data
-      console.log(this.workout)
     },
     journalUrl( journalId ) {
       return `/workout/${this.workoutId}/journal/${journalId}`

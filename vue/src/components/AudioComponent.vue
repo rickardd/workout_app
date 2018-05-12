@@ -49,50 +49,40 @@ export default {
   },
   methods: {
     play( audioName ){
-      console.log('play', audioName);
       switch( audioName ){
         case 'heartbeat':
-          console.log('heartbeat')
           this.$refs.audio1.currentTime = 0
           this.$refs.audio1.play();
           break
         case 'pop_banner':
-          console.log('pop_banner')
           this.$refs.audio2.currentTime = 0
           this.$refs.audio2.play();
           break
         case 'lullaby':
-          console.log('lullaby')
           this.$refs.audio3.currentTime = 0
           this.$refs.audio3.play();
           break
         case 'beep':
-          console.log('beep')
           this.$refs.audio4.currentTime = 0
           this.$refs.audio4.play();
           break
         case 'blop':
-          console.log('blop')
           this.$refs.audio5.currentTime = 0
           this.$refs.audio5.play();
           break
         case 'pling':
-          console.log('pling')
           this.$refs.audio6.currentTime = 0
           this.$refs.audio6.play();
           break
         case 'robot_blip':
-          console.log('robot_blip')
           this.$refs.audio7.currentTime = 0
           this.$refs.audio7.play();
           break
         case 'robot_blip_2':
-          console.log('robot_blip_2')
           this.$refs.audio8.currentTime = 0
           this.$refs.audio8.play();
           break
         case 'woosh':
-          console.log('woosh')
           this.$refs.audio9.currentTime = 0
           this.$refs.audio9.play();
           break

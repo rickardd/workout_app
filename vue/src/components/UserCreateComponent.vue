@@ -72,7 +72,6 @@ export default {
       })
       // const newUser = await UserService.getUser(response.data.ops[0]._id)
       // this.newUser = newUser.data
-      console.log(response.data.ops[0]._id)
       router.push({ name: 'User', params: { id: response.data.ops[0]._id }})
     },
     async update () {
