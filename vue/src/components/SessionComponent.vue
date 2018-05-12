@@ -3,7 +3,7 @@
 
     <div v-if="!!sessionId">
       <span v-if="currentExercise.numberOfSets">
-        Set {{setCounter + 1}}/{{currentExercise.numberOfSets}}
+        Set {{setCounter}}/{{currentExercise.numberOfSets}}
       </span>
 
       <div v-if="!workout">
@@ -92,7 +92,7 @@ export default {
       return this.setCounter >= this.currentExercise.numberOfSets
     },
     isFirstSetInExercise(){
-      return this.setCounter === 0
+      return this.setCounter === 1
     },
     isLastExerciseCompleted(){
       const exercises = this.workout.exercises;
@@ -101,7 +101,7 @@ export default {
     },
     onActionCompleted ( e ) {
       if ( this.isLastSetInExercise() ) {
-        this.setCounter = 0
+        this.setCounter = 1
         this.updateExercises()
       }
       else{
