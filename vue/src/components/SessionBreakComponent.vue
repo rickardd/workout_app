@@ -56,9 +56,16 @@
     <br>
     <br>
 
-    <button type="button">
+    <button type="button" @click="onLockClick" v-if="!isLocked">
       <span class="icon-lock-open"></span>
       Lock
+    </button>
+
+    <p v-if="!isTimesUp && isLocked" >Next set will be started on your command...</p>
+
+    <button type="button" @click="onContinueClick" v-if="isTimesUp && isLocked">
+      <span class="fi flaticon-arrows-1"></span>
+      Continue
     </button>
 
   </div>
@@ -77,12 +84,17 @@ export default {
     return {
       timer: null,
       breakElapseTime: 0,
+      isTimesUp: false,
+      isLocked: false,
     }
   },
   mounted () {
     this.restartBreakElapseTime()
       .then( () => {
-        this.$emit('breakCompleted')
+        if (!this.isLocked) {
+          this.$emit('breakCompleted')
+        }
+        this.isTimesUp = true
       })
   },
   beforeDestroy () {
@@ -103,7 +115,13 @@ export default {
           }
         }, 1000)
       })
-    }
+    },
+    onLockClick(){
+      this.isLocked = true
+    },
+    onContinueClick(){
+      this.$emit('breakCompleted')
+    },
 
   }
 }
