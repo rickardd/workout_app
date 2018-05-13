@@ -97,17 +97,11 @@ export default {
     isLastExerciseCompleted(){
       const exercises = this.workout.exercises;
       const lastExercises = exercises[exercises.length -1]
-      return this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets
+      this.currentExercise.name === lastExercises.name && this.setCounter >= this.currentExercise.numberOfSets
+      debugger
+      return this.currentExercise.name === lastExercises.name && this.setCounter >= parseInt(this.currentExercise.numberOfSets)
     },
     onActionCompleted ( e ) {
-      if ( this.isLastSetInExercise() ) {
-        this.setCounter = 1
-        this.updateExercises()
-      }
-      else{
-        this.setCounter += 1;
-      }
-
       if( this.isLastExerciseCompleted() ){
           if (SETTINGS.playSound ) {
             eventBus.$emit('audio:play', 'lullaby')
@@ -116,9 +110,16 @@ export default {
           this.closeSession()
           return
       }
-
-      this.currentView = 'sessionBreak'
-
+      else{
+        if ( this.isLastSetInExercise() ) {
+          this.setCounter = 1
+          this.updateExercises()
+        }
+        else{
+          this.setCounter += 1;
+        }
+        this.currentView = 'sessionBreak'
+      }
     },
     onBreakCompleted ( e ) {
       this.currentView = 'sessionAction'
