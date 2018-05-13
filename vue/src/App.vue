@@ -13,9 +13,12 @@
         </ul>
       </div>
       <div class="grid__item grid__item--main">
-        <router-view/>
 
-        <LoginComponent v-if="!user" />
+        <div v-if="$store.state.isLoggedIn">
+          <router-view/>
+        </div>
+
+        <LoginComponent v-if="!$store.state.isLoggedIn" />
 
       </div>
       <div class="grid__item grid__item--menu">
@@ -49,6 +52,7 @@ import LoginComponent from '@/components/LoginComponent'
 import eventBus from './helpers/EventBus'
 import UserService from '@/services/UserService'
 import router from '@/router'
+import store from '@/store/store'
 import SETTINGS from '@/settings/settings'
 
 export default {

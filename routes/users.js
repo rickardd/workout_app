@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var queries = require('../services/db');
+const express = require('express')
+const router = express.Router()
+const queries = require('../services/db')
 
 // GET /
 router.get('/', function( req, res ) {

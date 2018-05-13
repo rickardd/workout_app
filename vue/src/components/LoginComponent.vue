@@ -27,6 +27,7 @@
 
 import auth from '@/services/AuthService'
 import localStorageClass from '@/services/localStorage'
+import store from '@/store/store'
 
 export default {
   name: 'Login',
@@ -46,8 +47,10 @@ export default {
 
         console.log('LOGGED IN AS', res.data )
         // if res has property email the user succesfully logged in
-        if ( res.data.hasOwnProperty('email')) {
-          localStorageClass.setUser(res.data)
+        if ( res.data.hasOwnProperty('token')) {
+          // localStorageClass.setUser(res.data)
+          this.$store.dispatch('setUser', res.data.user)
+          this.$store.dispatch('setToken', res.data.token)
         }
         else{
           this.errorMessage = 'Login failed'
