@@ -8,15 +8,16 @@
     "preinstall": "rm -rf /dist"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
+    "mongodb": "^3.0.3",
     "morgan": "~1.9.0",
-    "serve-favicon": "^2.4.5",
-    "mongodb": "^3.0.3"
+    "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
     "nodemon": "^1.15.1"

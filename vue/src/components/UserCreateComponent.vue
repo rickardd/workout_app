@@ -77,7 +77,9 @@ export default {
     return {
       name: '',
       surname: '',
-      newUser: {}
+      email: '',
+      password: '',
+      newUser: {},
     }
   },
   methods: {

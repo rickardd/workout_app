@@ -1,11 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 const mongo = require('mongodb');
+const bcrypt = require('bcrypt-nodejs')
 
-// Connection URL
-// const url = 'mongodb://127.0.0.1:27017';
-// const url = 'mongodb://admin:admin@ds249249.mlab.com:49249/workout_app';
 var url = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017';
-// Database Name
 const dbName = 'workout_app';
 
 module.exports.login = function( username, password, callback) {
@@ -35,8 +32,8 @@ module.exports.insertUser = function(doc, callback) {
       {
         email: doc.email,
         name: doc.name,
-        password: doc.password,
         surname: doc.surname,
+        hash: bcrypt.hashSync(doc.password),
       }
       , function(err, doc) {
       if(err) throw err;
@@ -260,7 +257,7 @@ module.exports.addJournal = function(workoutId, doc, callback) {
       callback(doc)
     })
     .catch( (error) => {
-      console.log(error)
+      console.error(error)
     })
 
   });
@@ -295,7 +292,7 @@ module.exports.addExerciseToJournal = function(workoutId, journalId, doc, callba
       callback(doc)
     })
     .catch( (error) => {
-      console.log(error)
+      console.error(error)
     })
 
   });
@@ -326,7 +323,7 @@ module.exports.closeJournal = function(journalId, callback) {
       callback(doc)
     })
     .catch( (error) => {
-      console.log(error)
+      console.error(error)
     })
 
   });
