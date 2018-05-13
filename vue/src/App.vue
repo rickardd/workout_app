@@ -14,6 +14,9 @@
       </div>
       <div class="grid__item grid__item--main">
         <router-view/>
+
+        <LoginComponent v-if="!user" />
+
       </div>
       <div class="grid__item grid__item--menu">
         <ul class="main-nav">
@@ -42,6 +45,7 @@
 <script>
 
 import AudioComponent from '@/components/AudioComponent'
+import LoginComponent from '@/components/LoginComponent'
 import eventBus from './helpers/EventBus'
 import UserService from '@/services/UserService'
 import router from '@/router'
@@ -50,7 +54,8 @@ import SETTINGS from '@/settings/settings'
 export default {
   name: 'App',
   components: {
-    AudioComponent
+    AudioComponent,
+    LoginComponent,
   },
   data(){
     return {
@@ -61,7 +66,11 @@ export default {
   },
   mounted(){
     eventBus.$on('screen:flash', this.onScreenFlash )
-    eventBus.$on('localStorage:update:user', user => {
+    // eventBus.$on('localStorage:update:user', user => {
+    //   this.user = user
+    // })
+
+    eventBus.$on('localStorage:user:updated', user => {
       this.user = user
     })
 

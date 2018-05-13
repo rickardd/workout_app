@@ -28,7 +28,7 @@ router.get('/:id/workouts', function( req, res ) {
 
 // POST /
 router.post('/', function( req, res ) {
-  const doc = { name: req.body.name, surname: req.body.surname };
+  const doc = req.body
   queries.insertUser(doc, function( doc ) {
     console.log(doc)
     res.send( doc )

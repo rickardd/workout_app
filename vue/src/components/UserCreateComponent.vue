@@ -19,6 +19,22 @@
         placeholder="Surname"
         v-model="surname">
       <br>
+      <input
+        type="email"
+        class="input w-100"
+        name="email"
+        autocomplete="off"
+        placeholder="Email"
+        v-model="email">
+      <br>
+      <input
+        type="password"
+        class="input w-100"
+        name="password"
+        autocomplete="off"
+        placeholder="Password"
+        v-model="password">
+      <br>
 
       <button
         v-if="!id"
@@ -68,7 +84,9 @@ export default {
     async add () {
       const response = await UserService.createUser({
         name: this.name,
-        surname: this.surname
+        surname: this.surname,
+        email: this.email,
+        password: this.password,
       })
       // const newUser = await UserService.getUser(response.data.ops[0]._id)
       // this.newUser = newUser.data

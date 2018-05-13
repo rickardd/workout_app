@@ -9,6 +9,7 @@ var cors = require('cors');
 var serveStatic = require('serve-static');
 
 var index = require('./routes/index');
+var auth = require('./routes/auth');
 var users = require('./routes/users');
 var workouts = require('./routes/workouts');
 var exercises = require('./routes/exercises');
@@ -32,6 +33,7 @@ app.use(serveStatic(__dirname + '/dist')); // works
 app.use(cors());
 
 app.use('/', index);
+app.use('/auth', auth);
 app.use('/user', users);
 app.use('/workout', workouts);
 app.use('/exercises', exercises);

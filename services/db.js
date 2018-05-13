@@ -8,13 +8,37 @@ var url = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017';
 // Database Name
 const dbName = 'workout_app';
 
+module.exports.login = function( username, password, callback) {
+  MongoClient.connect(url, function(err, client) {
+    if(err) throw err;
+    const db = client.db(dbName);
+    const collection = db.collection('users');
+
+    collection.findOne(
+      {name: username},
+      function( err, doc ) {
+        if(err) throw err;
+        callback(doc);
+        client.close();
+      }
+    );
+  });
+};
+
 module.exports.insertUser = function(doc, callback) {
   MongoClient.connect(url, function(err, client) {
     if(err) throw err;
     const db = client.db(dbName);
     const collection = db.collection('users');
 
-    collection.insert( doc, function(err, doc) {
+    collection.insert(
+      {
+        email: doc.email,
+        name: doc.name,
+        password: doc.password,
+        surname: doc.surname,
+      }
+      , function(err, doc) {
       if(err) throw err;
       callback(doc);
       client.close();
